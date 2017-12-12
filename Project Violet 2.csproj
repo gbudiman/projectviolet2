@@ -224,6 +224,7 @@
     <Compile Include="Assets\TacticalLayer\TacticalGameController.cs" />
     <Compile Include="Assets\TacticalLayer\TacticalMap.cs" />
     <Compile Include="Assets\TacticalLayer\UnitActor.cs" />
+    <Compile Include="Assets\TurnMeterController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

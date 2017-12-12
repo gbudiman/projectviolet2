@@ -25,7 +25,6 @@ public class ColorController : MonoBehaviour {
 	}
 
   public static Color hex_to_float(int r, int g, int b) {
-    Debug.Log((float)r / 255);
     return new Color(((float)r)/255, ((float)g)/255, ((float)b)/255);
   }
 }

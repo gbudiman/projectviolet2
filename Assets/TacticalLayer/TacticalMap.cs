@@ -38,7 +38,7 @@ public class TacticalMap : MonoBehaviour {
     }
   }
 
-  public void place_unit(int a, int b, int c) {
+  public GameObject place_unit(int a, int b, int c) {
     /// <summary>
     /// Place a unit on specified hex tile. Supply ABC coordinates
     /// </summary>
@@ -54,5 +54,7 @@ public class TacticalMap : MonoBehaviour {
     unit.transform.SetParent(tile.transform);
     //unit.transform.position = new Vector3(0, 0, -1);
     unit.transform.localPosition = new Vector3(0, 0, -1);
+
+    return unit;
   }
 }
