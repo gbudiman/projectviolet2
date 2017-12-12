@@ -48,4 +48,22 @@ public class ActionUIController : MonoBehaviour {
     actor.set_default_action();
     tooltip.text = actor.get_tooltip();
   }
+
+  public void paint_target(bool val=true) {
+    if (actor == null) return;
+
+    tooltip.text = val ? actor.get_confirmation() : actor.get_tooltip();
+  }
+
+  public HexCoord get_active_actor_position() {
+    return actor.get_tile();
+  }
+
+  public UnitActor get_active_actor() {
+    return actor;
+  }
+
+  public void execute_selected_action() {
+    actor.execute_action();
+  }
 }

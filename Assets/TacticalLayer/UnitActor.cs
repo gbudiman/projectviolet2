@@ -15,6 +15,7 @@ public class UnitActor : MonoBehaviour {
   public enum Action { attack };
   public Action action;
   public Dictionary<Action, string> tooltip_dict;
+  public Dictionary<Action, string> confirmation_dict;
 	// Use this for initialization
 	void Start () {
     hex_tile = GetComponentInParent<HexCoord>();
@@ -23,6 +24,7 @@ public class UnitActor : MonoBehaviour {
     apc_attack = 50;
     turn_ending_attack = true;
     initialize_tooltip_dictionary();
+    initialize_confirmation_dictionary();
 	}
 	
 	// Update is called once per frame
@@ -33,6 +35,12 @@ public class UnitActor : MonoBehaviour {
   void initialize_tooltip_dictionary() {
     tooltip_dict = new Dictionary<Action, string>() {
       {Action.attack, "Select adjacent target to commence melee attack" }
+    };
+  }
+
+  void initialize_confirmation_dictionary() {
+    confirmation_dict = new Dictionary<Action, string>() {
+      {Action.attack, "Click to attack this target" }
     };
   }
 
@@ -52,6 +60,10 @@ public class UnitActor : MonoBehaviour {
 
   public void OnMouseExit() {
     hex_tile.highlight(false);
+  }
+
+  public void OnMouseUp() {
+    hex_tile.mouse_up_action();
   }
 
   public float tick() {
@@ -88,6 +100,10 @@ public class UnitActor : MonoBehaviour {
     return tooltip_dict[action];
   }
 
+  public string get_confirmation() {
+    return confirmation_dict[action];
+  }
+
   public void execute_action() {
     switch (action) {
       case Action.attack: expend_ap(apc_attack, turn_ending_attack); break;
@@ -96,6 +112,10 @@ public class UnitActor : MonoBehaviour {
 
   public void highlight_as_active() {
     hex_tile.highlight_as_active();
+  }
+
+  public HexCoord get_tile() {
+    return hex_tile;
   }
 
 }

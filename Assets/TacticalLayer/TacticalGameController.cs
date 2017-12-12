@@ -16,9 +16,10 @@ public class TacticalGameController : MonoBehaviour {
 
     turn_meter_controller = GetComponent<TurnMeterController>();
 
-    spawn_unit_actor("A", 33f, 1, 2, -3);
-    spawn_unit_actor("B", 25f, 0, -1, 1);
+    
+    spawn_unit_actor("B", 40f, 0, -1, 1);
     spawn_unit_actor("C", 18f, 0, 0, 0);
+    spawn_unit_actor("A", 33f, 1, 2, -3);
     turn_meter_controller.run_turn_meter();
 	}
 	
