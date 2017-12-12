@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class HexCoord : MonoBehaviour {
   public int a, b, c;
-  private Color neutral = new Color(1f, 1f, 1f);
-  private Color highlighted = new Color((float)0xff / 255, (float)0xd8 / 255, (float)0x52 / 255);//#ffd852
   SpriteRenderer sprite;
+  UnitActor occupant;
 	// Use this for initialization
 	void Start () {
     sprite = GetComponent<SpriteRenderer>();
+    occupant = GetComponentInChildren<UnitActor>();
 	}
 	
 	// Update is called once per frame
@@ -30,10 +30,15 @@ public class HexCoord : MonoBehaviour {
   }
 
   public void OnMouseEnter() {
-    sprite.color = highlighted;
+    highlight(true);
   }
 
   public void OnMouseExit() {
-    sprite.color = neutral;
+    highlight(false);
+  }
+
+  public void highlight(bool val = true) {
+    sprite.color = val ? ColorController.tile_highlighted : ColorController.tile_neutral;
+
   }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TacticalGameController : MonoBehaviour {
   TacticalMap tactical_map;
+  ColorController color_controller;
 	// Use this for initialization
 	void Start () {
     tactical_map = GameObject.FindObjectOfType<TacticalMap>();
