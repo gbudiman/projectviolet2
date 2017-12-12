@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class HexCoord : MonoBehaviour {
   public int a, b, c;
+  bool is_active;
   SpriteRenderer sprite;
   UnitActor occupant;
 	// Use this for initialization
 	void Start () {
     sprite = GetComponent<SpriteRenderer>();
     occupant = GetComponentInChildren<UnitActor>();
+    is_active = false;
 	}
 	
 	// Update is called once per frame
@@ -38,7 +40,13 @@ public class HexCoord : MonoBehaviour {
   }
 
   public void highlight(bool val = true) {
-    sprite.color = val ? ColorController.tile_highlighted : ColorController.tile_neutral;
+    if (!is_active) {
+      sprite.color = val ? ColorController.tile_highlighted : ColorController.tile_neutral;
+    }
+  }
 
+  public void highlight_as_active(bool val = true) {
+    sprite.color = val ? ColorController.tile_active : ColorController.tile_neutral;
+    is_active = val;
   }
 }

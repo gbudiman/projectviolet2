@@ -11,6 +11,10 @@ public class UnitActor : MonoBehaviour {
   public bool has_taken_actions;
   TacticalMap tactical_map;
   TurnMeterController turn_meter_controller;
+
+  public enum Action { attack };
+  public Action action;
+  public Dictionary<Action, string> tooltip_dict;
 	// Use this for initialization
 	void Start () {
     hex_tile = GetComponentInParent<HexCoord>();
@@ -18,12 +22,19 @@ public class UnitActor : MonoBehaviour {
 
     apc_attack = 50;
     turn_ending_attack = true;
+    initialize_tooltip_dictionary();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
+
+  void initialize_tooltip_dictionary() {
+    tooltip_dict = new Dictionary<Action, string>() {
+      {Action.attack, "Select adjacent target to commence melee attack" }
+    };
+  }
 
   public void initialize(float _ap_fill_rate, TurnMeterController _tmc) {
     current_ap = 0;
@@ -55,6 +66,7 @@ public class UnitActor : MonoBehaviour {
 
     if (is_turn_ending) {
       has_taken_actions = false;
+      hex_tile.highlight_as_active(false);
     }
 
     return current_ap;
@@ -64,5 +76,26 @@ public class UnitActor : MonoBehaviour {
     return (100f - current_ap) / ap_fill_rate;
   }
 
+  public void set_default_action() {
+    action = Action.attack;
+  }
+
+  public void set_action(Action a) {
+    action = a;
+  }
+
+  public string get_tooltip() {
+    return tooltip_dict[action];
+  }
+
+  public void execute_action() {
+    switch (action) {
+      case Action.attack: expend_ap(apc_attack, turn_ending_attack); break;
+    }
+  }
+
+  public void highlight_as_active() {
+    hex_tile.highlight_as_active();
+  }
 
 }

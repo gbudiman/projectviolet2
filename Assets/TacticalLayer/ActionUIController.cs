@@ -6,9 +6,11 @@ using UnityEngine.UI;
 public class ActionUIController : MonoBehaviour {
   Canvas action_canvas;
   UnitActor actor;
+  Text tooltip;
 	// Use this for initialization
 	void Start () {
     action_canvas = GameObject.Find("ActionCanvas").GetComponent<Canvas>();
+    tooltip = GameObject.Find("ActionTooltip").GetComponent<Text>();
     actor = null;
 	}
 	
@@ -36,10 +38,14 @@ public class ActionUIController : MonoBehaviour {
   }
 
   public void action_attack() {
-    actor.expend_ap(actor.apc_attack, actor.turn_ending_attack);
+    //actor.expend_ap(actor.apc_attack, actor.turn_ending_attack);
+    actor.set_action(UnitActor.Action.attack);
   }
 
   public void set_actor(UnitActor _actor) {
     actor = _actor;
+    actor.highlight_as_active();
+    actor.set_default_action();
+    tooltip.text = actor.get_tooltip();
   }
 }
