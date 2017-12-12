@@ -13,7 +13,7 @@ public class ColorController : MonoBehaviour {
   }
 
   public void initialize() { 
-    tile_neutral = hex_to_float(0xff, 0xff, 0xff);
+    tile_neutral = hex_to_float(0x58, 0x58, 0x58);
     tile_highlighted = hex_to_float(0xff, 0xd8, 0x52);
     actor_neutral = tile_neutral;
     actor_highlighted = tile_highlighted;

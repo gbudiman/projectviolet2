@@ -16,9 +16,9 @@ public class TacticalGameController : MonoBehaviour {
 
     turn_meter_controller = GetComponent<TurnMeterController>();
 
-    spawn_unit_actor("A", 10f, 1, 2, -3);
-    spawn_unit_actor("B", 5f, 0, -1, 1);
-    spawn_unit_actor("C", 7f, 0, 0, 0);
+    spawn_unit_actor("A", 33f, 1, 2, -3);
+    spawn_unit_actor("B", 25f, 0, -1, 1);
+    spawn_unit_actor("C", 18f, 0, 0, 0);
     turn_meter_controller.run_turn_meter();
 	}
 	
@@ -31,7 +31,7 @@ public class TacticalGameController : MonoBehaviour {
     GameObject unit = tactical_map.place_unit(a, b, c);
     UnitActor actor = unit.GetComponent<UnitActor>();
 
-    actor.initialize(ap_fill_rate);
+    actor.initialize(ap_fill_rate, turn_meter_controller);
     turn_meter_controller.register_actor(name, actor);
   }
 }

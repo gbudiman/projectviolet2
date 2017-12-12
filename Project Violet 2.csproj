@@ -221,6 +221,7 @@
   <ItemGroup>
     <Compile Include="Assets\ColorController.cs" />
     <Compile Include="Assets\HexTiles\HexCoord.cs" />
+    <Compile Include="Assets\TacticalLayer\ActionUIController.cs" />
     <Compile Include="Assets\TacticalLayer\TacticalGameController.cs" />
     <Compile Include="Assets\TacticalLayer\TacticalMap.cs" />
     <Compile Include="Assets\TacticalLayer\UnitActor.cs" />
