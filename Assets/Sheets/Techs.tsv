@@ -1,0 +1,471 @@
+	Code	Skill Key	Skill Name	Activation	Target	Requirement	Description	
+	1.1	stance_vigilance	Stance: Vigilance	Active	self	has_equipped_shield	Reduces flank area. Immobile, Defensive Stance.	
+	1.1	stance_vigilance_keen_eyes	Vigilance: Keen eyes	Passive			Reveals traps and stealthed enemy within 3 tiles	
+	1.1	stance_bulwark	Stance: Bulwark	Active	self	has_equipped_shield	Blocks projectiles from frontal, 3-length arrowhead. Immobile, Defensive Stance.	
+	1.1	stance_bulwark_bladestorm	Bulwark: Bladestorm	Passive			Confers Bladestorm to allies standing in Bulwakred tile	
+	1.1	stance_colossus	Stance: Colossus	Active	self	has_equipped_shield	Automatic Provoke enemies within 3 tiles. Immobile, Defensive Stance	
+	1.1	stance_colossus_deadlock	Colossus: Deadlock	Passive			Enemies attempting to break free from Deadlock while Provoked receive automatic critical, armor-ignoring hit	
+	1.1	stance_aggression	Stance: Aggression	Active	self	has_equipped_shield	Allows use of Shield to attack. Disables Counterattack, reduces Shield Block rate significantly. Offensive Stance.	
+	1.1	stance_aggression_shield_durability	Aggression: Shield Durability	Passive			Reduce Shield Degradation Rate	
+	1.1	stance_aggression_quicken	Aggression: Quicken	Passive			Attacks cost less AP	
+	1.1	stance_aggression_continuum	Aggression: Continuum	Passive			Attacks with Melee Weapon or Shield does not end turn while in this stance	
+	1.1	stance_recovery	Stance: Recovery	Active	self	has_equipped_shield	Recover 5% HP per turn spent in this stance. Immobile. Recovery Stance	
+	1.1	stance_recovery_deft_block	Recovery: Deft Block	Passive			Significantly increase shield block rate while in Recovery Stance	
+	1.1	stance_phalanx	Stance: Phalanx	Active	self	has_equipped_shield	Grants immunity to all Physical Impairment while in this stance, blocks projectiles. Immobile, Defensive Stance	
+	1.1	stance_phalanx_extension	Phalanx: Extension	Passive			Allows allies with equipped Shield to join Phalanx rank. No knowledge of Phalanx required.	
+	1.1	stance_phalanx_gap	Phalanx: Gap	Passive			Allows 1-tile gap between rank. This gap is not passable.	
+	1.1	stance_phalanx_polearm	Phalanx: Polearm	Passive			Allows self and allies in rank to use Polearm while Phalanx formation is active	
+	1.1	stance_mobility	Mobility Stance	Passive			Allows slow movement while in Defensive stance	
+	1.1	stance_focus	Focus	Active	self		Powerful version of Skip Turn. Significantly increase the next strike's PATK	
+	1.2	limit_break_mechanics	Unlock: Limit Break Mechanics	Passive			Unlocks Limit Break Meter. Requires 32 successful shield block to fill.	
+	1.2	limit_break_redux	Limit Break Reduction	Passive			Requires only 24 shield blocks to fill.	
+	1.2	limit_break_steel_lung	Limit Break: Steel Lung	Passive			Recovers 50AP after executing Limit Break	
+	1.2	limit_break_fast_reposition	Limit Break: Fast Reposition	Passive			Halves AP cost for moving while Limit Break Meter is full	
+	1.2	limit_break_damage	Limit Break: Increase Damage	Passive			Increase damage while limit is full and while performing Limit Break.	
+	1.2	limit_skewer_charge	Limit Break: Skewer Charge	Active	enemy_single	has_equipped_melee_weapon	Brandish weapon at a target 6 times	
+	1.2	limit_skewer_charge_hit_count	Skewer: Hit Count	Passive			Brandish weapon 12 times	
+	1.2	limit_skewer_pierce	Skewer: Pierce	Passive			Add 10% chance to Pierce for each hit.	
+	1.2	limit_exploding_stomp	Limit Break: Exploding Stomp	Active	aoe	has_equipped_shield, has_equipped_melee_weapon	Strike all target in frontal 180 degrees	
+	1.2	limit_exploding_stomp_pushback	Stomp: Pushback	Passive			50% chance to knockback stricken target 3 tiles in the direction of attack	
+	1.2	limit_exploding_stomp_stagger	Stomp: Stagger	Passive			10% chance to Stagger stricken target	
+	1.2	limit_exploding_stomp_range	Stomp: Range	Passive			Increase radius to 2 tiles	
+	1.2	limit_zip_fend	Limit Break: Zip Fend	Active	self	has_equipped_melee_weapon	Attack all targets in full circle with main-hand weapon	
+	1.2	limit_zip_fend_multihit	Fend: Multihit	Passive			3 hits per target	
+	1.2	limit_zip_fend_escape	Fend: Escape	Passive			Free move within 3 tiles after execution. Can bypass occupied tile, but cannot end on occupied tile	
+	1.2	limit_reaper	Reaper	Active	enemy_single		Attack and move towards the next target. Consecutive target must be within 3 tiles from previous one. Each enemy can only be hit once.	
+	1.2	limit_reaper_shock	Reaper: Shock	Passive			Each attack in Reaper mode has 50% chance to Shock target.	
+	1.3	shield_slinger	Shieldslinger	Passive			Halve shield weight requirement	
+	1.3	shield_increase_hp	Increase HP	Passive			Increase HP Pool	
+	1.3	shield_bash	Shield Bash	Active	enemy_single	has_equipped_shield	Bash with Shield	
+	1.3	shield_bash_stagger	Shield Bash: Stagger	Passive			10% chance to Stagger, increased with Limit.	
+	1.3	shield_counterattack	Counterattack	Passive		has_equipped_shield	Unblocked attack has 10% chance to be countered. Increased with Limit	
+	1.3	shield_balance	Shield Balance	Passive		has_equipped_shield	Confers immunity to Stagger.	
+	1.3	shield_disarm_protection	Shield Disarm Protection	Passive		has_equipped_shield	Throws equipped Shield at assailant when Shield is Disarmed. Assailant is Staggered, Shield is still Disarmed and needs to be picked up.	
+	1.3	shield_charge	Shield Charge	Active	tile	has_equipped_shield	Charge with shield at target for 7 tiles. Cancels any stance	
+	1.3	shield_charge_aftershock	Charge: Aftershock	Passive			If Charge path collides with a second object, the first target charged at is Staggered. Deals damage to the object collided with	
+	1.3	shield_charge_momentum	Charge: Momentum	Passive			Add damage based on self weight	
+	1.3	shield_devotion	Devotion	Active	ally_single	has_equipped_shield	Absorbs all damage from an ally. Must stand adjacent to ally	
+	1.3	shield_devotion_range	Devotion: Range	Passive			Devotion range is increased to 3 tiles	
+	1.3	shield_devotion_multi	Devotion: Multi	Passive			May use Devotion up to 3 allies.	
+	1.3	shield_sustained_defense	Sustained Defense	Passive		stance_non_aggressive	Increase Defense while in non-aggressive stance	
+	1.3	shield_mental_resistance	Mental Resistance	Passive		stance_non_aggressive	Increase resistance to Mental Impairment while in non-aggressive stance	
+	1.3	shield_combative	Shield Combative	Passive			Increase Shield damage by 50%	
+	1.3	shield_rescue	Rescue	Active	ally_single	ally_incapacitated	Moves towards incapacitated ally and protects them from Killing Blows as long as the caster is alive. Cancels all stance, normal combat continues on the following turn.	
+	2.1	dual_wield	Dual Wielding	Passive			Allows equipping two melee weapons. Off-hand deals 50% damage, main-hand deals 70% damage.	
+	2.1	dual_wield_off_hand	Dual Wielding Off-Hand Mastery	Passive			Off-hand deals 75%	
+	2.1	dual_wield_main_hand	Dual Wielding Main-Hand Mastery	Passive			Main-hand deals 100% damage	
+	2.1	dual_wield_parry	Parry	Passive		has_equipped_dual_wield	10% chance to Block melee strike. Increases with Trance.	
+	2.1	dual_wield_flurry	Flurry	Passive		has_equipped_dual_wield	Normal attack while dual wielding does not end turn. After every 2 attacks, damage output is reduced by 25%	
+	2.1	dual_wield_flurry_respiration	Flurry: Respiration	Passive			Damage penalty is reduced to 10%	
+	2.1	dual_wield_flurry_pommel_strike	Flurry: Pommel Strike	Active	self	has_equipped_dual_wield, dual_wield_strike_count_2	10% chance to Stagger. Usable after 2 attack from both arms. Chance increases with Trance.	
+	2.1	dual_wield_flurry_cross_break	Flurry: Cross Break	Active	self	has_equipped_dual_wield	Strike with both weapons at the same time. If used as last action, guarantees Parry for the next incoming attack	
+	2.1	dual_wield_windfall	Windfall	Passive		has_equipped_dual_wield	If a normal attack kills a target, refund AP cost for the killing blow	
+	2.1	dual_wield_cyclone	Cyclone	Active		has_equipped_dual_wield	Swings both weapons in full circle, hitting all target within 1-tile with both main-hand and off-hand	
+	2.1	dual_wield_cyclone_continuum	Cyclone: Continuum	Passive			Cyclone is not turn-ending	
+	2.1	dual_wield_cyclone_burst	Cyclone: Burst	Passive			Subsequent Cyclone executions cost half of its AP cost	
+	2.1	dual_wield_cyclone_whirlwind	Cyclone: Whirlwind	Passive			Free move within 3 tiles after Cyclone executions	
+	2.1	dual_wield_cyclone_equalizer	Cyclone: Equalizer	Passive			While performing cyclone, both arms is at 100% effectiveness	
+	2.1	dual_wield_pulverize	Pulverize	Active	enemy_single	has_equipped_dual_wield	Single strike that increases damage exponentially based on remaining AP	
+	2.1	dual_wield_pulverize_overpower	Pulverize: Overpower	Passive			Pulverize has 10% chance to break armor	
+	2.1	dual_wield_pulverize_kinetic_strike	Pulverize: Kinetic Strike	Passive			Adds 10% damage that bypass armor. Increases with Trance.	
+	2.1	dual_wield_pulverize_ground_slam	Pulverize: Ground Slam	Passive			Enemies within 1 tile of target has 10% chance to be Staggered. Increases with Trance	
+	2.2	polearm_powergrip	Powergrip	Passive		has_only_one_melee_weapon	Hold a melee weapon with both hands. Attack costs 25% less ap and deals 50% extra damage.	
+	2.2	polearm_poleslinger	Polearm: Slinger	Passive			Halves Polearm weight requirement	
+	2.2	polearm_equip	Polearm	Passive			Allows equipping Polearm-class weapons. 100% extra AP cost for movement.	
+	2.2	polearm_reach	Polearm: Reach	Passive			Polearm has 2-tiles melee range	
+	2.2	polearm_mobility	Polearm: Mobility	Passive			Reduce movement penalty to 50%	
+	2.2	polearm_damage	Polearm: Damage	Passive			Increase damage output from Polearm	
+	2.2	polearm_dance	Polearm: Dance	Passive			Polearm attacks do not end turn. Each special moves can only be performed once per turn.	
+	2.2	polearm_modular	Polearm: Modular	Passive			Switching between Modular Polearm to its Dual Wield form do not cost AP	
+	2.2	polearm_thrust	Polearm: Thrust	Active	enemy_single	has_equipped_polearm	25% chance to Pierce.	
+	2.2	polearm_swings	Polearm: Swing	Active	tile	has_equipped_polearm	Sweep 180 degrees. Can only be activated after Thrust	
+	2.2	polearm_smash	Polearm: Smash	Active		has_equipped_polearm, not_previous_target	Adds 10% chance to Stagger. Must change target to use.	
+	2.2	polearm_spin	Polearm: Spin	Active	enemy_single	has_equipped_polearm, not_previous_target	Attack and move towards target. Must change target to use.	
+	2.2	polearm_jump	Polearm: Jump	Active	tile	has_equipped_polearm	Jump high and strike from air. Can only be used as first Polearm move in a turn.	
+	2.2	polearm_boomerang	Polearm: Boomerang	Active	enemy_single	has_equipped_polearm	Throw Polearm at target up to 3 tiles away. Automatic Polearm recovery	
+	2.2	polearm_earthshatter	Earthshatter	Active	tile	has_equipped_polearm, has_weapon_property_maul	Require Polearm with Maul property. 50% to Stagger unit on targeted tile.	
+	2.2	polearm_earthshatter_shockwave	Earthshatter: Shockwave	Passive			Enemies standing on tiles around Earthshattered tile has 25% chance to be Staggered	
+	2.2	polearm_earthshatter_leap	Earthshatter: Leap	Passive			Leap up to 3 tiles away to deliver Earthshatter. Must land on unoccupied tile. Leap can bypass occupied tile.	
+	2.3	blood_overcharge	Overcharge	Active	self		Burn 100 AP to increase AP pool by 100 for the next turn	
+	2.3	blood_trance	Unlock: Trance Mechanics	Passive			Unlock Trance Meter. Trance is filled after 50 melee strikes while HP is less than 20%. Trance lasts for one turn.	
+	2.3	blood_trance_power_surge	Trance: Power Surge	Passive			While in Trance, increase damage by 50%	
+	2.3	blood_trance_blood_revels	Trance: Blood Revels	Passive			HP pool required to fill meter increased to 40%	
+	2.3	blood_trance_diabolical	Trance: Diabolical	Passive			Trance lasts 3 turns.	
+	2.3	blood_trance_hardening	Trance: Defense Hardening	Passive			Increase Defense while in Trance	
+	2.3	blood_trance_partial_recovery	Trance: Partial Recovery	Passive			Refills Trance after it ends based on difference between HP pool and the Trance-fill trigger.	
+	2.3	blood_trance_mindful	Trance: Mindful	Passive			Allows 2 active self-targeted Trance effects	
+	2.3	blood_trance_roar	Trance: Roar	Active	self		Trance effects. Reduce physical defense of all enemies within 3 tiles	
+	2.3	blood_trance_berserk	Trance: Berserk	Active	self		Trance effects. Further gain bonus damage based on missing HP pool	
+	2.3	blood_trance_arc_wave	Trance: Arc Wave	Active	self		Trance effects. Every normal attack using Polearm deals physical damage 3 tiles beyond target	
+	2.3	blood_trance_blood_rage	Trance: Blood Rage	Active	self		Trance effects. First kill at each turn restore AP to full	
+	2.3	blood_trance_firebrand	Trance: Firebrand	Active	self		Trance effects. Burning does not inflict Fire damage	
+	2.3	blood_trance_warcry	Trance: Warcry	Active	self		Trance effects. Allies within 3 tiles receive bonus to PATK and attack speed	
+	2.3	blood_trance_ravage	Trance: Ravage	Active	enemy_single		Mark a target. Halves AP costs for all actions used against marked taret.	
+	2.3	blood_trance_rage_strike	Trance: Rage Strike	Active	enemy_single	has_not_equipped_polearm, has_not_equipped_shield	Moves in straight line at half AP cost towards target and confers free attack. Cannot equip Polearm or Shield.	
+	2.3	blood_trance_sonic_wave	Trance: Sonic Wave	Active	enemy_single		Strikes a target with 50% chance to knockback one tile. Skill is repeated for free if target is knocked back.	
+	3.1	brawl_graceful	Graceful Brawling	Passive			Attacks using fist and feet does not end turn. Arms deal 75% damage	
+	3.1	brawl_main_hand_mastery	Brawl: Main Hand Mastery	Passive			Main Hand deals 100% damage	
+	3.1	brawl_off_hand_mastery	Brawl: Off Hand Mastery	Passive			Off Hand deals 100% damage	
+	3.1	brawl_footwork	Brawl: Footwork	Passive			Allows use of feet to attack. Feet deal 40% damage	
+	3.1	brawl_foot_mastery	Footwork: Mastery	Passive			Feet deals 75% damage	
+	3.1	brawl_inner_strength	Brawl: Inner Strength	Passive			Brawling attacks have 10% chance to ignore armor	
+	3.1	brawl_fist_implements	Brawl: Fist Implements	Passive			Allows use of Fist Implements	
+	3.1	brawl_blind_fighting	Brawl: Blind Fighting	Passive			Confers immunity to Blind	
+	3.1	brawl_posion_immunity	Poison Immunity	Passive			Confers immunity to Poison	
+	3.1	brawl_burning_heart	Burning Heart	Passive			Confers immunity to Chill (but not Frozen)	
+	3.1	brawl_iron_skin	Iron Skin	Passive		is_unarmored	When unarmored, reduce incoming damage by 25% * number of Momentum Orb	
+	3.1	brawl_iron_fist	Iron Fist	Passive		is_bare_handed	10% * number of Momentum Orb chance to block attack using fist or fist implements	
+	3.1	brawl_lightning_reflexes	Lightning Reflexes	Passive		is_unarmored	Adds 10% * number of Momentum Orb chance to dodge melee attacks	
+	3.1	brawl_bullet_time	Bullet Time	Passive		is_unarmored	Adds 5% * number of Momentum Orb chance to dodge ranged attacks	
+	3.1	brawl_balance	Heavenly Balance	Passive		is_unarmored	50% chance to nullify Stagger	
+	3.1	brawl_stigma	Stigma	Passive			Delays Maimed effect for 3 seconds	
+	3.1	brawl_master_of_mind	Master of Mind	Active	self		Spend one full turn to remove a random impairment	
+	3.1	brawl_windcatcher	Windcatcher	Passive			5% * number of Momentum Orb chance to capture thrown weapons/flask and rethrow it back	
+	3.2	momentum_summon_orb_1	Summon Momentum Orb I	Active			Summons up to 3 Momentum Orb. Target can only retain up to 2 Orbs	
+	3.2	momentum_summon_orb_2	Summon Momentum Orb II	Active			Summons up to 5 Momentum Orb. Target can only retain up to 4 Orbs	
+	3.2	momentum_summon_orb_3	Summon Momentum Orb III	Active			Summons up to 7 Momentum Orb. Target can retain up to 7 Orbs	
+	3.2	momentum_zen	Zen	Passive			Summons maximum number of Momentum Orb. AP use accumulates.	
+	3.2	momentum_orb_1	Momentum I	Passive			Target can retain 3 Orbs: Decrease physical defense by 10%	
+	3.2	momentum_orb_2	Momentum II	Passive			Target can retain 4 Orbs: Non-fist attacks have 5% chance to ignore armor	
+	3.2	momentum_orb_3	Momentum III	Passive			Target can retain 5 Orbs: Fist attacks have additional 10% chance to crit	
+	3.2	momentum_orb_4	Momentum IV	Passive			Target can retain 6 Orbs: Fist attacks cost 25% less AP	
+	3.2	momentum_orb_5	Momentum V	Passive			Target can retain 7 Orbs: Fist attacks have 5% chance to Maim random limbs	
+	3.2	momentum_acrobatic_blitz	Acrobatic Blitz	Passive			Start: 1 arm, End: 2 feet	
+	3.2	momentum_azimuth_diver	Azimuth Diver	Passive			Start: 2 feet, End: 2 arms	
+	3.2	momentum_cross_somersault	Cross Somersault	Passive			Start: 1 foot 1 arm, End: 1 arm 1 foot	
+	3.2	momentum_heavenly_fist	Heavenly Fist	Passive			Start: 1 arm, End: 2 arms	
+	3.2	momentum_vulture_gale	Vulture Gale	Passive			Start: 2 arms, End: 2 arms	
+	3.2	momentum_guillotine_ram	Guillotine Ram	Passive			Start: 1 arm 1 foot, End: 1 foot 1 arm	
+	3.2	momentum_searing_flare	Searing Flare	Passive			Alternating arm and feet	
+	3.2	momentum_throw_orb	Throw Momentum Orb	Active	enemy_single	has_momentum_orb	Use Momentum Orb for ranged attack up to 7 tiles	
+	3.2	momentum_chakra	Chakra	Active	self		Use Momentum Orb to heal self. Requires full turn	
+	3.3	stealth_conceal	Conceal	Active	self	has_not_equipped_shield, has_not_equipped_polearm	Enter Stealth Mode, can only be used once per combat. Must be 7 tiles away from any enemies. Any actions other than moving breaks Stealth	
+	3.3	stealth_conceal_ghostwalker	Conceal: Ghostwalker	Passive			Reduce enemies' detection radius	
+	3.3	stealth_conceal_phantom_strike	Conceal: Phantom Strike	Passive			First strike from Stealth mode ignores armor	
+	3.3	stealth_conceal_absolutely_critical	Conceal: Absolutely Critical	Passive			First strike from Stealth mode adds 50% critical chance	
+	3.3	stealth_conceal_preemptive_strike	Conceal: Pre-emptive Strike	Passive			First strike from Stealth mode does not cost action and does not end turn	
+	3.3	stealth_conceal_lone_ranger	Conceal: Lone Ranger	Passive			Double damage on first strike when breaking Stealth more than 7 tiles away from allies	
+	3.3	stealth_silent_killer	Conceal: Silent Killer	Passive			Killing blows do not break stealth. Can only occur once per turn.	
+	3.3	stealth_death_blossom	Death Blossom	Passive	self	has_throwables_small	Throws Throwables: Small at all units within 3-tiles radius. Must be performed while in Stealth. Conceal bonus applies to all attacks. End Stealth regardless of Silent Killer ability.	
+	3.3	stealth_deployment	Stealthed Deployment	Passive		has_not_equipped_shield, has_not_equipped_polearm	Enter combat in Stealthed mode. Allows free reposition anywhere in battlefield.	
+	3.3	stealth_blindside	Blindside	Passive			Melee attacks while performing Rear Assault ignores armor	
+	3.3	stealth_coup_de_grace	Coup de Grace	Active	enemy_single	target_is_flanked_rear	Chance for instant kill the lower the target's remaining HP is. Can only be performed in Rear Attack. Deals normal damage if fails.	
+	3.3	stealth_windwalk	Windwalk	Passive			Reduce movement AP cost by 50% while Stealthed	
+	3.3	stealth_lightfoot	Lightfoot	Passive			While Stealthed, does not trigger trap as long as unit does not end turn on it. Does not reveal trap	
+	3.3	stealth_mug	Mug	Passive			Melee attack has chance to cause target to drop random unequipped item.	
+	3.3	stealth_mug_poach	Mug: Poach	Passive			Instead of dropping, Mug has chance to acquire item instead.	
+	3.3	stealth_moulinet	Moulinet	Passive			When engaged from Flank or Rear, confers one free attack. Mug bonus applies.	
+	3.3	stealth_unbind	Unbind	Active	ally_single		Remove Bound status from allies, not from self. Free action.	
+	3.3	stealth_unbind_self	Unbind: Self	Passive			Can remove Bound status from self. 	
+	4.1	marksmanship_bow	Bow Mastery	Passive			Confers accuracy and damage bonus based on DEX and Impulse when using Bow	
+	4.1	marksmanship_firearm	Firearm Mastery	Passive			Confers accuracy bonus based on DEX and Impulse when using Firearms	
+	4.1	marksmanship_mounted_crossbow	Mounted Crossbow	Passive			Allows Mounted Crossbow use	
+	4.1	marksmanship_mounted_pistol	Mounted Pistol	Passive			Allows Mounted Pistol	
+	4.1	marksmanship_return_fire	Return Fire	Passive			Fire back at ranged attacker with mounted weaponry	
+	4.1	marksmanship_strong_back	Strong Back	Passive			Halves ammunition weights	
+	4.1	marksmanship_rapid_reload	Rapid Reload	Passive			Reloading ranged and mounted weapons do not end turn and its AP cost reduced based on Impulse	
+	4.1	marksmanship_firearm_dualwield	Firearms Dual Wield	Passive			Allows dual wielding Firearms at 25% accuracy for both arms	
+	4.1	marksmanship_firearm_dualwield_main_hand_1	Firearms Dual Wield Main Hand I				Increase Firearms main-hand accuracy to 75%	
+	4.1	marksmanship_firearm_dualwield_off_hand_1	Firearms Dual Wield Off Hand I				Increase Firearms off-hand accuracy to 50%	
+	4.1	marksmanship_double_tap	Double Tap	Active	enemy_single		Shoot ranged weapons twice, dealing base 200% damage, improved by Impulse	
+	4.1	marksmanship_strafe	Strafe	Active	tile		Move in a straight line up to 3 tiles and strafe are parallel to movement direction. Higher Impulse grants longer distance.	
+	4.1	marksmanship_knockback	Knockback	Active	enemy_single		Deal normal damage with Bow, knocking back the target for 3 tiles. Higher Impulse knocks target back further.	
+	4.1	marksmanship_hail_of_arrows	Hail of Arrows	Active	aoe		Saturate 3-tile radius with 16 arrow	
+	4.1	marksmanship_hail_of_arrows_rainmaker	Hail of Arrows: Rainmaker	Passive			Increase Hail of Arrow AoE to 4-tiles using 32 arrows	
+	4.1	marksmanship_scatter_shot	Scatter Shot	Active	aoe		Short-range 60-degrees spray with Firearm: Slug up to 3 tiles-distance. 50% accuracy penalty	
+	4.1	marksmanship_sniped_shot	Sniped Shot	Active	enemy_single		Long-range shot with Firearm: Rifled. Reduces long distance penalty, but severly increase short distance penalty.	
+	4.1	marksmanship_walking_target	Walking Target	Active	enemy_single		Makes target easier to hit. Increase accuracy against marked target by 50%	
+	4.2	dexterous_concentration	Concentration	Active	self		Ends turn. Becomes immobile next turn. Doubles Dexterity	
+	4.2	dexterous_overdraw	Overdraw	Active	self	is_concentrating	Bow only: Spend extra normal attack AP cost additional damage. 25% chance to break weapon for each Overdraw.	
+	4.2	dexterous_overdraw_meticulous	Overdraw: Meticulous	Passive			Reduce chance to break weapon on Overdraw to 5%	
+	4.2	dexterous_aim	Aim	Active	self	is_concentrating	Doubles AP cost for increased accuracy. Must use both hands	
+	4.2	dexterous_lightning_hand	Lightning Hand	Passive		is_concentrating	Attack with mounted ranged weapons counts as free action	
+	4.2	dexterous_blood_trail_accuracy	Blood Trail: Accuracy	Passive			If target is less than 50% HP, increase 25% accuracy	
+	4.2	dexterous_blood_trail_damage	Blood Trail: Damage	Passive			If target is less than 50% HP, increase 25% damage	
+	4.2	dexterous_blood_trail_critical	Blood Trail: Critical	Passive			If target is less than 50% HP, add 50% critical chance	
+	4.2	dexterous_depth_perception	Depth Perception	Passive			Increase Dodge and Accuracy against target at lower elevation	
+	4.2	dexterous_implaccable	Implaccable	Passive		is_concentrating	Killing shot from Bow/Firearm does not end turn. Must be in Concentration.	
+	4.2	dexterous_close_quarter	Close Quarter	Passive		is_concentrating	Free attack with Mounted weapons for each enemy that enters 3-tiles radius. Must be in Concentration.	
+	4.2	dexterous_overwatch	Overwatch	Active	aoe	is_concentrating	Free attack with Bow/Firearm for one enemy that enters targeted 3-tiles radius. Must be in Concentration.	
+	4.2	dexterous_overwatch_guardian	Overwatch: Guardian	Passive			If Overwatch hits, 50% chance for another Overwatch at same target. Must have readily available ammunitions. Does not benefit Bows overwatch.	
+	4.2	dexterous_overwatch_stunlock	Overwatch: Stun Lock	Passive			Successful Overwatch has 25% chance to Stagger target	
+	4.2	dexterous_untouchable	Untouchable	Passive		is_not_concentrating	Allows normal move after performing kill shot using Bow/Firearm. Must not be in Concentration	
+	4.2	dexterous_crippling_shot	Crippling Shot	Active	enemy_single	has_equipped_physical_ranged	Maim one of target's legs.	
+	4.2	dexterous_combat_arrow_recovery	Combat Arrow Recovery	Active	tile		Recover some arrows while in combat.	
+	4.3	acrobatics_impulse_unlock	Unlock: Impulse	Passive			Unlock Impulse mechanics. Impulse meter increases with AGI stats.	
+	4.3	acrobatics_dash	Dash	Active	self		Move rapidly in straight line at half AP cost. Generates Impulse	
+	4.3	acrobatics_dash_dodge	Dash: Dodge	Passive			Increase dodge for the next turn if entire turn was spent moving	
+	4.3	acrobatics_tailwind	Dash: Tailwind	Passive			Tiles that Acrobat traversed reduce allies' movement AP cost by 50%	
+	4.3	acrobatics_slipslide	Slipslide	Active	self		Activate before ending turn. If attacked on the next turn, automatically moves back 3 steps once per activation. Consumes Impulse.	
+	4.3	acrobatics_leap	Leap	Active	enemy_single		Requires 3 unoccupied tiles before target. Leap over a target. Consumes Impulse.	
+	4.3	acrobatics_leap_quickshot	Leap: Quickslash	Passive			Free attack on target leapt upon. Can only attack with mounted weapons or fist at 50% damage output.	
+	4.3	acrobatics_blink_strike	Blink Strike	Active	enemy_single		Instantly moves towards a target and perform free attack. 5 tiles distance. Consumes Impulse	
+	4.3	acrobatics_backstab	Backstab	Active	enemy_single		Immediately move behind a target. Target must be in melee range. Consumes Impulse	
+	4.3	acrobatics_fleche	Fleche	Active	enemy_single		Melee attack that gains bonus damage the further away the target is. Generates Impulse.	
+	4.3	acrobatics_jump	Jump	Active	self		Allows change of elevation while moving. Consumes Impulse.	
+	4.3	acrobatics_jump_gravity_defy	Jump: Gravity Defy	Passive			Throwing weapons while airborne does not cost AP.	
+	4.3	acrobatics_jump_aerial_detonation	Jump: Aerial Detonation	Passive			When jumping towards lower elevation, trigger aerial shockwave blasts that damage all units and may Stagger them	
+	4.3	acrobatics_mount	Mount	Active	mount		Allows mounting. Requires one hand to control mount	
+	4.3	acrobatics_mount_powerkick	Mount: Powerkick	Passive			Use Mount to kick target. Free action. 50% chance to Stagger. Once per turn, consumes Impulse	
+	4.3	acrobatics_mount_carry	Carry	Passive			Allows carry one ally while Mounted. Adds movement AP cost equal to 50% of that of carried unit's	
+	4.3	acrobatics_mount_impetus	Impetus	Passive			Throwing and Bow damage is increased based on the number of tiles moved prior the attack. Capped to 7 tiles. Bonus improved with higher Impulse	
+	4.3	acrobatics_mount_autoflank	Autoflank	Passive			All deadlock attack becomes Flank attack. Flank attack becomes Rear Assault. Rear Assault becomes Massive Assault.	
+	5.1	sabotage_disarm_weapons	Disarm Weapons	Active	enemy_single	has_weapon_property_blunt	Disarm target's weapon or shield	
+	5.1	sabotage_disarm_shield	Disarm Shield	Active	enemy_single	has_weapon_property_blunt	Disarm target's weapon or shield	
+	5.1	sabotage_shatter_weapons	Shatter Weapons	Active	enemy_single	has_weapon_property_maul	Destroy target's weapon	
+	5.1	sabotage_shatter_armor	Shatter Armor	Active	enemy_single	has_weapon_property_maul	Destroy target's armor	
+	5.1	sabotage_shatter_shield	Shatter Shield	Active	enemy_single	has_weapon_property_maul	Destroy target's shield	
+	5.1	sabotage_mime	Mime	Active	any		Copy target's Skill when used on caster. All prerequisites for Skill use applies.	
+	5.1	sabotage_disorient	Disorient	Active	enemy_single		Disorient target. Disoriented target suffers penalty to accuracy and dodge.	
+	5.1	sabotage_maim	Maim	Active	enemy_single	has_weapon_property_blunt	Maims target's limb. Maimed limbs are useless.	
+	5.1	sabotage_shock	Shock	Active	enemy_single		Applies Shock to target. Shocked target lost all AP and lost all Dodge.	
+	5.1	sabotage_rupture	Rupture	Active	enemy_single	has_weapon_property_sharp	Applies Rupture to target. Ruptured target takes double Body damage that is not negated for the next 1 attack.	
+	5.1	sabotage_rupture_deep_wound	Rupture: Deep Wound	Passive			Rupture lasts for 3 attacks.	
+	5.1	sabotage_bind	Bind	Active	enemy_single		Bind an enemy.	
+	5.1	sabotage_diversion	Diversion	Active	ally_single		The next targeted-ranged attack against target is guaranteed to miss. Only 1 Diversion per Saboteur.	
+	5.1	sabotage_jinx	Jinx	Active	enemy_single		Reinstate the last Physical Impairment removed from target. Does not end turn.	
+	5.1	sabotage_pull	Pull	Active	enemy_single	has_harpoon	Pull a target towards caster. Does not end turn.	
+	5.1	sabotage_grapple	Grapple	Active	tile	has_harpoon	Change to higher elevation instantly. Free action	
+	5.1	sabotage_auxiliary_part	Auxilliary Part	Active	ally_single	has_auxilliary_part	Nullifies Shatter. Consumes Auxilliary Part. One Auxilliary Part per unit.	
+	5.2	antimagic_disrupt	Disrupt	Active	enemy_single		Cancels Incantation skills	
+	5.2	antimagic_disrupt_feedback	Disrupt: Feedback	Passive			Caster suffers 50% Body damage of the Mana used for the Incantation skill. Bypass any protection.	
+	5.2	antimagic_disrupt_daze	Disrupt: Daze	Passive			25% chance to cause Daze on successful Disrupt	
+	5.2	antimagic_dispel	Dispel	Active	enemy_single		Dispel each magical effects from an enemy.	
+	5.2	antimagic_dispel_barrier	Dispel: Barrier	Passive			Dispel will immediately remove Barrier	
+	5.2	antimagic_dispel_dispersal	Dispel: Dispersal	Passive			Enemies suffer 25% remaining Body damage based on the number of magical effects dispelled. Damage applies sequentially and cannot kill the target	
+	5.2	antimagic_spell_breaker	Spell Breaker	Active	ally_single		Nullifies single-target magic attack against target. One Spell Breaker for each Anti-Mage. Caster has chance to suffer Daze.	
+	5.2	antimagic_spell_breaker_deflect	Spell Breaker: Deflect				The offensive spell will be deflected to the caster.	
+	5.2	antimagic_mana_drain	Mana Drain	Active	enemy_single		Drain 25% of target's Mana. Increased with DEX. Cannot drain Soul/Prayer	
+	5.2	antimagic_mana_drain_steal	Mana Drain: Lifesteal	Passive			Successful Drain transfers Mana to caster's HP	
+	5.2	antimagic_mana_drain_spire_orb	Mana Drain: Spire Orb	Passive		has_spire_orb	When caster's HP is full, transfer Mana overflows to a Spire Orb. Spire Orb can be detonated at 1:1 Neutral-element damage ratio. One Spire Orb per Anti-Mage	
+	5.2	antimagic_elemental_shield	Elemental Shield	Active	ally_single		Increase elemental Magical Defense equal to that of the caster	
+	5.2	antimagic_elemental_shield_deflect	Elemental Shield: Deflect	Passive			Deflect single-target elemental magic attack	
+	5.2	antimagic_purify	Purify	Active	self		Clears Field Effects and deals 25% Body damage to the caster that fills the Field Effects. Damage increases with DEX.	
+	5.2	antimagic_silence	Silence	Active	enemy_single		Silence a target, preventing them from performing Incantation skills	
+	5.2	antimagic_ward_implement	Anti-Magic Ward Implement	Active	ally_ward_free		Allow Anti-magic skills to be implemented on a Ward	
+	5.2	antimagic_reflective_shield	Reflective Shield	Active	ally_single		Shield can be used to block magical attack. One Reflective Shield per Anti-Mage	
+	5.2	antimagic_addle	Addle	Active	enemy_single		Reduce target's INT to 1	
+	5.3	trap_autopotion	Auto Potion	Passive			Automatically consumes available healing potion when receiving fatal blow. Can only occur once per turn.	
+	5.3	trap_cart	Cart	Passive			Allows carrying a Cart in battlefield	
+	5.3	trap_cart_spinwheel	Cart: Spinwheel	Active	self		Use Cart to attack all units within 2 radius. Damage increases with Cart weight	
+	5.3	trap_snare	Snare Trap	Active	tile		Snares victim in place for 3 seconds	
+	5.3	trap_claymore	Claymore Trap	Active	tile		Explodes on trigger	
+	5.3	trap_claymore_blast	Claymore: Blast Radius	Passive			Increase blast radius to 3 tiles	
+	5.3	trap_flak	Flak Trap	Active	tile		Shoots directional projectiles 5 tiles away	
+	5.3	trap_flak_shrapnel	Flak: Shrapnel	Passive			Projectiles inflict Bleed	
+	5.3	trap_tripwire	Trap Trigger: Tripwire	Active	tile	has_installed_trap	Allows detonation by remote trigger	
+	5.3	trap_delayed_timer	Trap Trigger: Delayed Timer	Active	tile_with_own_trap	has_installed_trap	Triggers detonation on second activation	
+	5.3	trap_remove	Trap Disarm	Active	tile_with_known_trap		Remove known Trap	
+	5.3	trap_slotting_1	Trap Slotting I	Active		has_installed_trap, target_trap_is_slottable		
+	5.3	trap_slotting_2	Trap Slotting II	Active		has_installed_trap, target_trap_is_slottable		
+	5.3	trap_salvo	Salvo	Passive			Throwing flask does not end turn	
+	5.3	trap_flask_effect_duration	Flask Hyperdense Mix	Passive			Increase effects from Thrown Flask	
+	5.3	trap_flask_blast_radius	Flask Fragmentation Blast	Passive			Increase blast radius from thrown Flask	
+	5.3	trap_turret	Turret	Active	tile		Assemble Turret in battlefield	
+	6.1	elemental_ice_1	Ice Elemental I	Active	self		Chills the target, quadrupling AP requirement for all actions. 100% Magical Attack damage.	
+	6.1	elemental_ice_permafrost	Ice: Permafrost	Passive			50% chance for Frozen effect. Frozen target is vulnerable to Shatter	
+	6.1	elemental_ice_icicles	Ice: Sharp Icicles	Passive			Sharp edges confer 25% chance to inflict Bleed	
+	6.1	elemental_fire_1	Fire Elemental I	Active	self		Burning target takes Fire damage for every action. Target's normal melee attacks inflict Fire damage. 100% Magical Attack damage	
+	6.1	elemental_fire_roust	Fire: Roust	Passive			Burning enemies has 10% chance to Panic with every action taken	
+	6.1	elemental_fire_melt	Fire: Melting Temperature	Passive			Burning target degrades armor points equal to 50% of Fire damage	
+	6.1	elemental_lightning_1	Lightning Elemental I	Active	self		100% Magical Attack damage	
+	6.1	elemental_lightning_megavolt	Lightning: Megavolt	Passive			Lightning has 25% chance to Shock target	
+	6.1	elemental_lightning_arc	Lightning: Arc Lightning	Passive			Lightning may jump up to 3 times. 75% chance for 1-tile-away, 25% chance for 2-tiles away targets.	
+	6.1	elemental_bolt	Bolt	Active	enemy_single		3 Bolts. Target must be within 5 tiles	
+	6.1	elemental_bolt_strikes_1	Bolt: Strike I	Passive			6 Bolts	
+	6.1	elemental_bolt_distance	Bolt: Distance	Passive			Target up to 9 tiles away	
+	6.1	elemental_cone	Cone	Active	tile		3 tiles-away Conical. Each tile can only be affected once	
+	6.1	elemental_cone_angle	Cone: Angle	Pasive			60-degrees arc	
+	6.1	elemental_cone_distance_1	Cone: Distance I	Passive			5 tiles	
+	6.1	elemental_wall	Wall	Active	tile		3 tiles in straight lines. Target tile up to 5 tiles away	
+	6.1	elemental_wall_spike	Wall: Spike	Passive			Unit standing on Wall-casted tile receives damage in addition to being displaced. If displacement is not possible, Wall disappears and Unit takes the same amount of damage needed to destroy the Wall	
+	6.1	elemental_wall_high_intensity_1	Wall: High Intensity I	Passive			Increase Wall durability/damage needed to remove it	
+	6.2	battlemage_whip	Equip: Whip	Passive			Whip counts as Physical Melee with range 3. 	
+	6.2	battlemage_whip_mastery	Whip Mastery	Passive			Using whip to attack does not end turn	
+	6.2	battlemage_auto_evocation	Auto Evocation	Passive			Melee attack has chance to autocast Bolt without using Mana. Chance increases with higher FAI.	
+	6.2	battlemage_auto_wall	Auto Wall	Passive			Steps back and automatically erects a Wall when HP falls below 10% due to melee attack. Can only occur once per turn.	
+	6.2	battlemage_barrier_recharge	Barrier Recharge	Passive			Recharge Barrier with each successful Melee attack	
+	6.2	battlemage_snowpetal	Snowpetal	Active	aoe		Requires full Barrier and Mana. Must attune to Ice Element.	
+	6.2	battlemage_firestorm	Firestorm	Active	aoe		Requires full Barrier and Mana. Must attune to Fire Element.	
+	6.2	battlemage_upheaval	Upheaval	Active	aoe		Requires full Barrier and Mana. Must attune to Wind Element.	
+	6.2	battlemage_burst_barrier	Burst Barrier	Active	self		Destroy's own Barrier to deal damage to area in 3-tiles radius around caster	
+	6.2	battlemage_signet_of_fire	Signet of Fire	Passive			Increase damage and critical chance to allies in 3-tiles radius.	
+	6.2	battlemage_signet_of_ice	Signet of Ice	Passive			Confers HP regeneration and chance to remove Physical Impairments to allies in 3-tiles radius.	
+	6.2	battlemage_signet_of_wind	Signet of Wind	Passive			Reduce AP cost for all Physical actions to allies in 3-tiles radius. Confers bonus to Battlemage's Mana regeneration.	
+	6.2	battlemage_frost_diver	Frost Diver	Active	enemy_single	has_equipped_whip	Use whip to deliver Ice-element Melee attack. Must attune to Ice Element.	
+	6.2	battlemage_frost_diver_healing_fountain	Frost Diver: Healing Fountain	Passive			Confers chance to create Regeneration Mist to allies in 2-tiles radius around target	
+	6.2	battlemage_fiery_claw	Fiery Claw	Active	enemy_single	has_equipped_whip	Use whip to deliver Fire-element Melee attack. Must attune to Fire Element.	
+	6.2	battlemage_fiery_claw_explosion	Fiery Claw: Explosion	Passive			Confers chance to create Burning Field in 2-tiles radius around target	
+	6.2	battlemage_arcing_whiplash	Arcing Whiplash	Active	enemy_single	has_equipped_whip	Use whip to deliver Wind-element Melee attack. Must attune to Fire Element.	
+	6.2	battlemage_arcing_whiplash_potent	Arcing Whiplash: Potent	Passive			Confers chance to knockback target for 3 tiles	
+	6.3	util_mana_unlock	Unlock: Mana mechanics	Passive			Unlock Mana mechanics	
+	6.3	util_staff_mastery	Staff Mastery	Passive			Gains magical benefit from Staff	
+	6.3	util_enhanced_mana_regen	Enhanced Mana Regeneration	Passive			Enhanced Mana Regeneration	
+	6.3	util_barrier	Barrier	Active	ally_single		Creates Barrier to absorb all kind of damage. 	
+	6.3	util_channeling	Channeling	Passive			Allows repeating Elemental skills without setup	
+	6.3	util_channeling_reiteration	Channeling: Reiteration	Passive			Channeled Elemental costs half Mana	
+	6.3	util_meditation	Meditation	Active	ally_single		Spends one full turn to recover 25% Mana	
+	6.3	util_enchant_weapon	Enchant: Weapon	Active	ally_single		Enchant ally's weapons with active elemental properties	
+	6.3	util_enchant_armor	Enchant: Armor	Active	ally_single		Enchant ally's armor with active elemental properties	
+	6.3	util_enchant_armor_barrier_additive	Enchant Armor: Barrier Additive	Passive			Enchanting armor confers or recharges target's Barrier	
+	6.3	util_enchant_area	Enchant: Area	Active	tile		Enchant 3-radius area with active elemental properties	
+	6.3	util_stoic	Stoic	Passive			May continue Incantation while receiving damage	
+	6.3	util_napalm_strike	Napalm Strike	Active	enemy_single		Non-elemental Bolt. Bolt Skills bonus applies.	
+	6.3	util_napalm_blaster	Napalm Blaster	Active	self		Creates non-elemental field surrounding self that prevents enemies from entering 3-tiles radius from Elementalist.	
+	6.3	util_switch	Switch	Active	self		Exchange MP with HP at 1:1 ratio	
+	6.3	util_elemental_spirit	Elemental Spirit	Active	self		Summon Elemental Spirit based on attunement. 1 Spirit per Elementalist	
+	6.3	util_elemental_spirit_greater	Elemental Spirit: Greater	Passive			Increase Elemental Spirit stats	
+	7.1	soul_mechanics	Unlock: Soul mechanics	Passive			Unlock Soul mechanics with 6 Soul slot. Increased with higher INT.	
+	7.1	soul_memento	Memento	Passive			Soul can be carried over between battle	
+	7.1	soul_harvest	Soul Harvest	Passive			Harvest soul from fallen non-Undead enemies	
+	7.1	soul_animate_dead	Animate Dead	Active	corpse	is_not_undead, has_soul	Raise Undead army from fallen non-Undead enemies. Target must still have unharvested Soul. Animated corpse will randomly attack enemies.	
+	7.1	soul_animate_dead_metabolic_rage	Animate Dead: Metabollic Rage	Passive			Animated corpses can move faster	
+	7.1	soul_animate_dead_hardened_cell	Animate Dead: Hardened Cell	Passive			Animated corpses have higher Defense	
+	7.1	soul_animate_dead_muscular_regenreration	Animate Dead: Muscular Regeneration	Passive			Animated corpses have higher Physical Attack	
+	7.1	soul_shield	Soul Shield	Active	ally_single		Creates Ablative Shield using Soul.	
+	7.1	soul_corpse_explosion	Corpse Explosion	Active	corpse	is_not_undead, has_soul	Explodes a corpse, dealing damage in 3-radius area and spreading status effects	
+	7.1	soul_restoration	Soul Restoration	Active	self		Uses Soul to restore HP	
+	7.1	soul_walking_bomb	Walking Bomb	Active	enemy_single		Can be used on undead and living target. Target explodes when dying and lost its Soul. Explosion is 3-tiles radius.	
+	7.1	soul_walking_bomb_death_nova	Walking Bomb: Death Nova	Passive			Exploding target may impart 1 random Impairment at units caught in blast radius. Impairment is selected from learned Hexes skills.	
+	7.1	soul_phase_shift	Phase Shift	Active	self		The next attack against caster will deal zero damage	
+	7.1	soul_consume	Soul Consume	Active	self		Use Soul to remove one random Impairment	
+	7.1	soul_vampirism	Vampirism	Active	enemy_single		Apply Vampiric Mark on a target. All allies except the caster siphon HP when target receives damage, distributed equally.	
+	7.1	soul_putrid_inscription	Putrid Inscription	Active	enemy_single		Transfer one random Physical/Mental impairments to target	
+	7.1	soul_poison_cloud	Poison Cloud	Active	aoe		Uses Soul to create a Poison Cloud at 3-tiles radius	
+	7.2	hexes_life_drain	Life Drain	Active	enemy_single	is_not_undead	Drains HP from non-Undead target. Effectiveness increases with more Soul.	
+	7.2	hexes_life_leech	Life Leech	Active	self		Drains HP with each physical damage done to non-Undead target. Effectiveness increases with more Soul	
+	7.2	hexes_weakness	Weakness	Active	enemy_single	is_not_undead	Severely reduce target's STR and VIT	
+	7.2	hexes_horror	Horror	Active	enemy_single	is_not_undead	May cause Panic.	
+	7.2	hexes_numb	Numb	Active	enemy_single	is_not_undead	Severely reduce target's AGI and DEX	
+	7.2	hexes_blindness	Blindness	Active	enemy_single	is_not_undead	Severely reduce target's Accuracy and Dodge. 	
+	7.2	hexes_curse	Curse	Active	enemy_single	is_not_undead	Cursed target cannot be healed. Every actions taken randomly inflict Dark-element damage and may incapacitate target	
+	7.2	hexes_slumber	Slumber	Active	enemy_single	is_not_undead	Sleeping target do not regenerate AP. They will be awakened when they take damage. 	
+	7.2	hexes_slumber_nightmare	Slumber: Nightmare	Passive			Slumber deals Dark-element damage per second. This damage does not awaken taret	
+	7.2	hexes_heresy	Heresy	Active	enemy_single	is_not_undead	Reduces target's FAI to 0	
+	7.2	hexes_possession	Possession	Active	enemy_single	is_not_undead	Mind control a target. Target regenerates AP at the same rate as does the caster. Mental Check is performed every turn.	
+	7.2	hexes_corruption	Corruption	Active	enemy_single	is_not_undead	Randomly converts one Buff from target into an Impairment.	
+	7.2	hexes_unholy_martyr	Unholy Martyr	Active	self		Transfer allies' Mental Impairments within 3-tiles to caster	
+	7.2	hexes_suffocating_void	Suffocating Void	Active	enemy_single	is_not_undead	Deals Dark-element damage per second	
+	7.2	hexes_capsize	Capsize	Active	ally_single	is_not_undead	Switch HP by percentage with an ally. If used on Ward, can only occur once.	
+	7.2	hexes_capsize_universal	Capsize: Universal	Passive	any		Capsize can be used against enemies. Mental Check applies.	
+	7.2	hexes_ward_implement	Hexes Ward Implement	Active	ally_ward_free		Allow Hexes skills to be implemented on a Ward	
+	7.3	dark_field_effect_chaos	Field Effect Chaos	Active	map		Shuffle Field Effect	
+	7.3	dark_rainbow_effect	Rainbow Effect	Passive			Increase Dark-element damage based on the number of distinct elements in Field Effects	
+	7.3	dark_axe_mastery	Axe Mastery	Passive			Axe damage increases with number of Souls. Attacks using Axe does not end turn.	
+	7.3	dark_mirror_image	Mirror Image	Active	ally_single		Creates a mirror image. Mirror image take random actions against enemy but deal zero damage. Immediately disappears when suffers non-zero damage.	
+	7.3	dark_mirror_image_spread	Mirror Image: Spread	Passive			Can create up to 3 mirror image.	
+	7.3	dark_mirror_image_phantasm	Mirror Image: Phantasm	Passive			Mirror image now deals Dark damage	
+	7.3	dark_mirror_image_subspace	Mirror Image: Subspace	Passive			Mirror image has half of caster's HP	
+	7.3	dark_mirror_image_explosion	Mirror Image: Explosion	Passive			Mirror image explodes when dying. 2-tiles radius	
+	7.3	dark_mirror_image_absolve	Mirror Image: Absolve	Active	mirror_image		Immediately destroys an image	
+	7.3	dark_enchant_armor	Dark Enchantment Armor	Active	ally_single		Enchant Dark element to ally's armor	
+	7.3	dark_enchant_weapon	Dark Enchantment Weapon	Active	ally_single		Enchant Dark element to ally's weapon	
+	7.3	dark_enchant_spectral	Dark: Spectral	Passive			Spectral-Enchanted weapon bypass 25% armor	
+	7.3	dark_blood_sacrifice	Blood Sacrifice	Active	ally_single		Absorb ally's HP to heal caster's HP. 50% efficiency, improved with more Soul.	
+	7.3	dark_soul_engrave	Soul Engrave	Non-combat		equipment_has_slot	Engrave a Soul to slottable equipment	
+	7.3	dark_soul_slot	Soul Slotting	Non-combat		equipment_has_free_slot	Creates a Soul Slot on equipment	
+	7.3	dark_reaper_scythe	Reaper Scythe	Active	self	has_equipped_axe	Transform Axe into Reaper's Scythe. Scythe is 3-tiles Melee weapon and attacks in 180-degrees. Each swing consumes Soul.	
+	7.3	dark_reaper_scythe_otherworld	Reaper Scythe: Otherworld	Passive			Confers very high chance of Pierce and Bypass Armor to Scythe	
+	8.1	gestalt_unlock	Unlock: Gestalt Mechanics	Passive			Gestalt meter is filled by attacking opponents with Bow or Melee. Fist and Firearms do not fill Gestalt meter.	
+	8.1	gestalt_bow_acceleration	Gestalt: Bow Acceleration	Passive			Boosts Gestalt meter fill when performing Bow attacks	
+	8.1	gestalt_owl	Owl	Active	self		Summons Owl. Cannot attack. Has Owl Sight: reveals Stealted enemies and trap in 3-tiles radius	
+	8.1	gestalt_hawk	Hawk	Active	self		Summons Hawk. Cannot attack. Has Blitz: attack all enemies in 3-tiles radius	
+	8.1	gestalt_hawk_blazing_wake	Hawk: Blazing Wake	Active	tile		Commands Hawk to attack in straight line, 3-tiles wide	
+	8.1	gestalt_wolf	Wolf	Active	self		Summons Wolf, nimble fighter	
+	8.1	gestalt_bear	Bear	Active	self		Summons Bear, heavy fighter	
+	8.1	gestalt_bear_lacerate	Bear: Lacerate	Active	enemy_single		Bleeds target	
+	8.1	gestalt_spider	Spider	Active	self		Summons Spider. Cannot attack. Has Spider Web: Webbed target cannot move, but can still attack and use skills	
+	8.1	gestalt_spider_toxic_spit	Spider: Toxic Spit	Active	aoe		Spits poison, 3-tiles radius	
+	8.1	gestalt_phoenix	Phoenix	Active	self		Summons Phoenix. Cannot attack. Has Heal	
+	8.1	gestalt_phoenix_resurrect	Phoenix: Resurrect	Active	ally_single		Resurrects a single ally. Phoenix disappears.	
+	8.1	gestalt_carrion_swarm	Carrion Swarm	Active	self		Summons Carrion Swarm. Cannot attack. Has Swarm: attack a target, slows AP regeneration, and chance to inflict Blind	
+	8.1	gestalt_unicorn	Unicorn	Active	self		Summons Unicorn, all-around fighter	
+	8.1	gestalt_golem	Golem	Active	self		Summons Golem, slow-devastating attack and high Defense	
+	8.1	gestalt_golem_earthen_fist	Golem: Earthen Fist	Active	self		5-tiles radius attack around Golem, 75% chance to Stagger all unit inside AoE	
+	8.1	gestalt_dragonling	Dragonling	Active	self		Summons Dragonling, airborne fighter. Defaults to Fire element. Enchant weapon with different element to change Dragonling's element. Accepts Ice, Wind, and Dark element.	
+	8.1	gestalt_dragonling_breath	Dragonling: Breath	Active	aoe		Breathe at 3-tiles radius	
+	8.2	geomancy_deluge	Deluge	Active	aoe		Neutral | Ice. 3-tiles radius	
+	8.2	geomancy_deluge_quagmire	Deluge: Quagmire	Passive			Severely reduce AGI to units in Deluge	
+	8.2	geomancy_fissure	Fissure	Active	aoe		Earth | Fire. 3-tiles radius	
+	8.2	geomancy_fissure_seismic	Fissure: Seismic	Passive			Fissure has chance to Stagger	
+	8.2	geomancy_gust	Gust	Active	aoe		Wind | Ice, Fire. 3-tiles radius	
+	8.2	geomancy_gust_storm	Gust: Storm	Passive			Upgrades to 5-tiles radius	
+	8.2	geomancy_lavaflow	Lavaflow	Active	aoe		Fire. 8-tiles range, 2-tiles wide.	
+	8.2	geomancy_lavaflow_eruption	Lavaflow: Eruption	Passive			Tiles with lava may randomly erupt and damage units 2-tiles away	
+	8.2	geomancy_boulder	Boulder	Active	aoe		Earth | Ice, Fire. 8-tiles range, 3-tiles wide.	
+	8.2	geomancy_boulder_trail	Boulder: Trail	Passive			Leave trails when using Ice or Fire element	
+	8.2	geomancy_entangling_roots	Entangling Roots	Active	aoe		Earth | Ice, Fire. 3-tiles radius. All targets become immobile. Roots can be destroyed.	
+	8.2	geomancy_starfall	Starfall	Active	aoe		Neutral | Ice, Fire, Wind. 3-tiles radius, targeting only enemies. Up to 32 starfalls in 3 seconds. Maximum 8 starfalls per second.	
+	8.2	geomancy_starfall_deep_impact	Starfall: Deep Impact	Passive			Creates Smog 2-radius around impact. May cause Blind.	
+	8.2	geomancy_tree_of_life	Tree of Life	Active	self		Transforms caster into immobile Tree of Life, granting steady regeneration to allies within 3-tiles radius	
+	8.2	geomancy_tree_of_life_elixir	Tree of Life: Elixir	Passive			May remove Physical Impairment and Maim from allies by chance.	
+	8.2	geomancy_whisperwind	Whisperwind	Active	self		For the next 3 seconds, caster becomes Earth element and does not occupy tile. Caster can still be targeted and suffer normal damage	
+	8.2	geomancy_nature_bestow	Nature Bestow	Passive	self		Tile conditions except fire do not impede action costs	
+	8.3	nature_glyph_teleportation	Glyph of Teleportation	Active	tile_empty		Portals can only be used by allies and unidirectional. One end of the Portal must be Channeled to remain open	
+	8.3	nature_glyph_teleportation_bypass	Teleportation: Bypass	Passive			Projectiles can be 'teleported' through portals	
+	8.3	nature_glyph_teleportation_negative_entropy	Teleportation: Negative Entropy	Passive			Portal lasts for 1 extra second after Channeling stops	
+	8.3	nature_glyph_teleportation_bidirectional	Teleportation: Bidirectional	Passive			Portal upgrades to bidirectional	
+	8.3	nature_glyph_teleportation_unstable	Teleportation: Unstable	Passive			Channeled Portal explodes when closed	
+	8.3	nature_glyph_repulsion	Glyph of Repulsion	Active	aoe		Enemies entering the glyph will be knocked back and receive Earth damage	
+	8.3	nature_glyph_imprisonment	Glyph of Imprisonment	Active	aoe		Enemies leaving the glyph will be jailed in an suffer Earth damage. 3-tiles radius	
+	8.3	nature_glyph_levitation	Glyph of Levitation	Active	aoe		Can be used to change elevation. Levitates all units inside glyph, rendering them unable to perform physical melee attacks or skills	
+	8.3	nature_glyph_tranquility	Glyph of Tranquility	Active	aoe		Negates all magical attacks targeting glyphed regions. Anyone inside glyph cannot use Incantation skill.	
+	8.3	nature_glyph_paralysis	Glyph of Paralysis	Active	aoe		Applies Shocked to all units entering Glyph	
+	8.3	nature_glyph_stability	Glyph of Stability	Active	aoe		Units inside Glyph cannot be Staggered	
+	8.3	nature_wisp_form	Wisp Form	Active	self		Turns self into Wisp for 3 seconds. Wisp is invulnerable to magical damage.	
+	8.3	nature_petrify	Petrify	Active	enemy_single		Turns target into stone in 3 seconds	
+	8.3	nature_rock_armor	Rock Armor	Active	ally_single		Adds extra layer of Armor Points to target. Earth element.	
+	8.3	nature_inversion	Inversion	Active	ally_single		Swap places with an ally	
+	8.3	nature_inversion_adversary	Inversion: Adversary	Passive	any		Swap places with an enemy. Intelligence Check applies	
+	8.3	nature_glyph_mastery	Glyph Mastery	Passive			Allows 2 active Glyphs	
+	9.1	psionics_stasis	Stasis	Active	any		Puts target in Stasis. Target is immune to damage but cannot perform any actions	
+	9.1	psionics_pillar	Pillar	Active	tile_empty		Make tiles impassable	
+	9.1	psionics_inspire	Inspire	Active	ally_single		Ends turn and immediately fills target's AP pool	
+	9.1	psionics_safety_wall	Safety Wall	Active	tile		Ally inside Safety Wall are immune to external damage	
+	9.1	psionics_psi_strike	Psi Strike	Active	enemy_single		Single-target psionics strike. Deals Holy damage. Psionics attacks bypass Armor, but not Barrier/Ablative Shields	
+	9.1	psionics_psi_strike_jolt	Psi Strike: Jolt	Passive			Psi Strike on incapacitated ally revives them with 1 HP.	
+	9.1	psionics_psi_lance	Psi Lance	Active	tile		8-tiles long, 1-tile wide lance strike. Deals Holy damage.	
+	9.1	psionics_psi_vortex	Psi Vortex	Active	tile		5-tiles Holy vortex.	
+	9.1	psionics_neural_feedback	Neural Feedback	Active	ally_single		Nullifies any attempt to impart Mental Impairment on target. Caster targeting allies with Neural Feedback has chance to be Dazed .	
+	9.1	psionics_mind_merge	Mind Merge	Active	ally_single		Becomes immobile and defenseless. Allies receive 50% of caster's stats. Target must stay within 3-tiles of the Psion or the effect dissipates. When caster is incapacitated, Mind-Merged allies is too.	
+	9.1	psionics_mind_merge_signal_boost	Mind Merge: Signal Boost	Passive			Increase distance to 11-tiles	
+	9.1	psionics_mind_merge_secondary_brain	Mind Merge: Secondary Brain	Passive			Psion can resume normal combat functions when Mind-Merged.	
+	9.1	psionics_luminaire	Luminaire	Active	map		Deals Holy damage to all Undead and target with Dark properties in map	
+	9.1	psionics_faith_transfer	Faith Transfer	Passive			Each kill with Psionics skill restores 1 Prayer	
+	9.1	psionics_time_warp	Time Warp	Active	ally_single		Grants 3 seconds of borrowed time to target. Once expires, target reverts to their original condition and position (if unoccupied). Does not work if target becomes incapacitated before 3 seconds expire.	
+	9.1	psionics_time_bend	Time Bend	Active	enemy_single		Increase AP costs of all target's actions when engaged in melee-range	
+	9.1	psionics_remote_sensing	Remote Sensing	Active	enemy_single		Reveals information of target	
+	9.2	holy_zeal	Zeal	Active	ally_single		Increase ally's AGI	
+	9.2	holy_fortress	Fortress	Active	ally_single		Target becomes immune to Mental Impairments	
+	9.2	holy_battle_hymn	Battle Hymn	Active	ally_single		Increase target's STR and DEX	
+	9.2	holy_rapid_casting	Rapid Casting	Active	ally_single		Incantation Skills only require 50AP to cast	
+	9.2	holy_bloomfield	Bloomfield	Active	ally_single		Increase target's INT	
+	9.2	holy_ablative_shield	Ablative Shield	Active	ally_single		Confers 3-hit Ablative Shield to target. Can be improved with higher Prayer level.	
+	9.2	holy_blessed_aim	Blessed Aim	Active	ally_single		Increase ranged attack accuracy and chance to Crit.	
+	9.2	holy_sanctus_maledicta	Sanctus Maledicta	Active	ally_single		Increase target's damage output	
+	9.2	holy_benedicta_sacramonia	Benedicta Sacramonia	Active	ally_single		Increase target's Faith up to caster's Faith	
+	9.2	holy_praesidium	Praesidium	Active	ally_single		Reduce damage received by allies	
+	9.2	holy_ward_implement	Holy Ward Implement	Active	ally_ward_free		Allow Holy skills to be implemented on a Ward	
+	9.2	holy_empowerment	Holy Empowerment	Active	ally_single		Spends Prayer to recover target's Mana	
+	9.2	holy_epicure	Holy Epicure	Active	ally_single		Increase Potion effectiveness on target	
+	9.2	holy_protector	Holy Protector	Active	ally_single		Increase target's PDEF	
+	9.2	holy_shell	Holy Shell	Active	ally_single		Increase target's MDEF	
+	9.2	holy_book	Holy Book Mastery	Passive			Increase Psionics and Genesis Skills effectiveness when wielding Holy Book	
+	9.2	holy_sacrimony	Holy Sacrimony	Passive			Holy skills can be casted to all allies, provided enough Prayer	
+	9.3	genesis_unlock_prayer	Unlock: Prayer Mechanics	Passive			Unlock Prayer Mechanics	
+	9.3	genesis_heal	Heal	Active	any		Heal target	
+	9.3	genesis_resurrect	Resurrect	Active	ally_incapacitated		Resurrect incapacitated target	
+	9.3	genesis_awakened_faith	Awakened Faith	Passive			Enters combat with partially filled Prayer depending on FAI stats	
+	9.3	genesis_litany	Litany	Active	self		Spend 1 full turn to recover Prayer	
+	9.3	genesis_cure	Cure	Active	ally_single		Removes one physical impairment from an ally	
+	9.3	genesis_cure_medical_genius	Cure: Medical Genius	Passive			Upgrades to remove all impairments in one action. Prayer cost accumulates	
+	9.3	genesis_mend	Mend	Active	ally_single		Fix Maimed limb. Requires full turn.	
+	9.3	genesis_aura	Aura	Active	self		Activates Holy Aura on self. 3-tiles radius. All allies in radius become Holy element. Undead and any unit with Dark properties suffer damage each second.	
+	9.3	genesis_aura_regen	Aura: Regeneration	Passive			Allies inside Aura is healed every second.	
+	9.3	genesis_ward	Ward	Active	tile_empty		Place Ward on empty tile. Ward is stationary and destructible. Permeates effect at 3-tiles radius. Disappears after 5 seconds. One effect per Ward	
+	9.3	genesis_ward_defensible	Ward: Defensible	Passive			Ward can receive Barrier and Ablative Shield	
+	9.3	genesis_ward_mastery	Ward: Mastery	Passive			Can place up to 3 Wards.	
+	9.3	genesis_exorcise	Exorcise	Active	enemy_single		Attempt to instantly incapacitate Undead or Dark-properties unit. On failure, deals extreme Holy damage on target.	
+	9.3	genesis_guardian_angel	Guardian Angel	Active	ally_single		The first killing blow will not incapacitate target, but leave them with 1 HP instead	
+	9.3	genesis_divine_body	Divine Body	Active	ally_single		Target becomes immune to Poison, Fire, Ice, and Earth effects for 3 seconds	
+	9.3	genesis_karma	Karma	Passive			Successful use of Holy Skills has chance to recharge Prayer	
