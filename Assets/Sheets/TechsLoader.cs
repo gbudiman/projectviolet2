@@ -48,12 +48,12 @@ public class TechsLoader : MonoBehaviour {
 }
 
 public class SkillData {
-  string skill_key;
-  string skill_name;
-  string activation;
-  string target;
-  string requirements;
-  string description;
+  public string skill_key;
+  public string skill_name;
+  public string activation;
+  public string target;
+  public string requirements;
+  public string description;
 
   public SkillData(string _skill_key, 
                    string _skill_name, 
