@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EquipsLoader : MonoBehaviour {
-  Dictionary<string, EquipData> equips;
+  public Dictionary<string, EquipData> equips;
 
 	// Use this for initialization
 	void Start () {
