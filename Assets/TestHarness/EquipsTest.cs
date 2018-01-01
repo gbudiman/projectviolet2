@@ -30,6 +30,7 @@ public class EquipsTest : MonoBehaviour {
 	}
 
   void print_test_result() {
+    list();
     Debug.Log(test_passed + "/" + test_count + " tests passed");
   }
 
@@ -49,6 +50,12 @@ public class EquipsTest : MonoBehaviour {
     set_multitest("arrow_steel", "quiver_main", 18, APPEND); test_multi("arrow_steel", 18, MAIN);
     test_multi("arrow_iron", 1, MAIN);
     set_multiremove("arrow_steel", "quiver_main", 3); test_multiremove("arrow_steel", 3);
+    set_test("quiver_slingback", "slingback_off"); test("quiver_slingback", OFF);
+    set_multitest("arrow_steel", "quiver_main", 3, APPEND);
+    set_multitest("arrow_steel", "quiver_off", 5, APPEND);
+    test_multi("arrow_steel", 8, MAIN);
+    set_multitest("arrow_steel", "quiver_off", 20, APPEND); test_multi("arrow_steel", 21, MAIN);
+
     set_multitest(null, "quiver_main"); test_empty_multi("quiver_main");
     set_test(null, "slingback_main"); test_unequip("slingback_main");
     set_multitest(null, "quiver_main"); test_multi("arrow_iron", 5, MAIN);

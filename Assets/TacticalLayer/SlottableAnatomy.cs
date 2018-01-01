@@ -119,25 +119,38 @@ public class SlottableAnatomy : MonoBehaviour {
     switch (equip_data.slot) {
       case Slot.quiver:
         string source = mainside ? "slingback_main" : "slingback_off";
+        string source_alt = mainside ? "slingback_off" : "slingback_main";
         string target = mainside ? "quiver_main" : "quiver_off";
+        string target_alt = mainside ? "quiver_off" : "quiver_main";
+        
         int maxes = get_capacity(source, "arrow_capacity");
-
+        int alternate_maxes = get_capacity(source_alt, "arrow_capacity");
         
 
         if (maxes > 0) {
           bool overflow = false;
+          int remainder = 0;
           for (int i = 0; i < amount; i++) {
             if (multis[target].Count >= maxes) {
-              Debug.Log("Overflow " + (amount - i).ToString() + " " + equip_data.name);
+              remainder = amount - i;
+              Debug.Log("Overflow " + remainder + " " + equip_data.name);
               overflow = true;
               break;
             }
             multis[target].Add(equip_data);
           }
 
-          if (overflow) {
+          if (overflow && alternate_maxes > 0) {
+            Debug.Log("Found alternate quiver for overflow");
+            for (int i = 0; i < remainder; i++) {
+              if (multis[target_alt].Count >= alternate_maxes) {
+                Debug.Log("Overflow " + (remainder - i).ToString() + " " + equip_data.name);
+                break;
+              }
+              multis[target_alt].Add(equip_data);
+            }
           } else {
-            Debug.Log("Loaded " + amount + " " + equip_data.name + " to " + target);
+            Debug.Log("Loaded " + (amount - remainder).ToString() + " " + equip_data.name + " to " + target);
           }
         } else {
           Debug.Log("No available Quiver to store " + amount + " " + equip_data.name);
