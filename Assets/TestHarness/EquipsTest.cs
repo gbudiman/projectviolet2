@@ -60,11 +60,32 @@ public class EquipsTest : MonoBehaviour {
     set_test(null, "slingback_main"); test_unequip("slingback_main");
     set_multitest(null, "quiver_main"); test_multi("arrow_iron", 5, MAIN);
 
+    set_test("holster_slingback", "slingback_main");
+    test("holster_slingback", MAIN);
+    set_test("bow_long", "holster_slingback_main");
+    test_holstered("bow_long");
+    test_holstered("axe_great");
+
+    set_test("holster_hip", "hipbelt_main"); test("holster_hip", MAIN);
+    test_holstered("axe_great");
+    set_test("axe_generic", "hipholster_main"); test_holstered("axe_generic");
+    set_test("holster_hip", "hipbelt_off"); test("holster_hip", OFF);
+    set_test("holy_book", "hipholster_off"); test_holstered("holy_book");
+    test_holstered("dagger");
+
+    set_test(null, "hipbelt_off");
+    set_test(null, "hipholster_off");
+    test_unequip("hipbelt_off");
   }
 
   void equip(string s, bool mainside = true) {
     var equips = equips_loader.equips;
     anatomy.equip(equips[s], mainside);
+  }
+
+  void equip_holstered(string s) {
+    var equips = equips_loader.equips;
+    anatomy.equip_holstered(equips[s]);
   }
 
   void add(string s, int amount, bool mainside = true) {
@@ -84,6 +105,12 @@ public class EquipsTest : MonoBehaviour {
 
   void test(string equip_id, bool mainside = true) {
     equip(equip_id, mainside);
+    validate();
+    test_count++;
+  }
+
+  void test_holstered(string equip_id) {
+    equip_holstered(equip_id);
     validate();
     test_count++;
   }

@@ -112,15 +112,21 @@ public class EquipData {
   public bool is_dedicated_throwable = false;
 
   public bool holster_any_weapons = false;
-  public bool holster_dagger = false;
-  public bool holster_sword = false;
+  public bool holster_not_oversize = false;
+
   public bool holster_axe = false;
-  public bool holster_crossbow = false;
   public bool holster_bow = false;
+  public bool holster_claw = false;
+  public bool holster_crossbow = false;
+  public bool holster_dagger = false;
   public bool holster_gunpowder = false;
   public bool holster_holy_book = false;
+  public bool holster_mace = false;
+  public bool holster_maul = false;
+  public bool holster_mounted = false;
   public bool holster_scepter = false;
-  public bool holster_not_oversize = false;
+  public bool holster_spear = false;
+  public bool holster_sword = false;
   public bool holster_whip = false;
 
   public string key;
@@ -152,8 +158,7 @@ public class EquipData {
       case "armbelt": slot = SlottableAnatomy.Slot.armbelt; break;
       case "greaves": slot = SlottableAnatomy.Slot.greaves; break;
       case "helmet": slot = SlottableAnatomy.Slot.helmet; break;
-      case "hip": slot = SlottableAnatomy.Slot.hip; break;
-      case "hipbag": slot = SlottableAnatomy.Slot.hipbag; break;
+      case "hipbelt": slot = SlottableAnatomy.Slot.hipbelt; break;
       default: throw new System.ArgumentException("Unknown Anatomy Slot " + _slot);
     }
   }

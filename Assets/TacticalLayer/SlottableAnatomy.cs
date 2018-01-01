@@ -6,9 +6,10 @@ public class SlottableAnatomy : MonoBehaviour {
   public enum Slot { body, slingback, quiver, belt, belt_toolkit,
                      gauntlet, arm, arm_dual, armbelt,
                      greaves,
-                     helmet, hip, hipbag }
+                     helmet, hipbelt }
   public Dictionary<string, EquipData> anatomy;
   public Dictionary<string, List<EquipData>> multis;
+  Dictionary<string, string> holsterables;
   UnitActor parent_actor;
   
 	// Use this for initialization
@@ -34,20 +35,35 @@ public class SlottableAnatomy : MonoBehaviour {
       { "greaves_off", null },
       { "greavesholster_main", null },
       { "greavesholster_off", null },
+      { "holster_slingback_main", null },
+      { "holster_slingback_off", null },
       { "helmet", null },
-      { "hip", null },
-      { "hipbag", null },
+      { "hipbelt_main", null },
+      { "hipbelt_off", null },
+      { "hipholster_main", null },
+      { "hipholster_off", null },
     };
 
+    // These are slots that can take multiple items
     multis = new Dictionary<string, List<EquipData>>() {
       { "quiver_main", new List<EquipData>() },
       { "quiver_off", new List<EquipData>() },
       { "belt_toolkit", new List<EquipData>() },
-      { "armholster_main", new List<EquipData>() },
-      { "armholster_off", new List<EquipData>() },
-      { "greavesholster_main", new List<EquipData>() },
-      { "greavesholster_off", new List<EquipData>() },
+      { "armmunition_main", new List<EquipData>() },
+      { "armmunition_off", new List<EquipData>() },
     };
+
+    holsterables = new Dictionary<string, string>() {
+      {"slingback_main", "holster_slingback_main" },
+      {"slingback_off", "holster_slingback_off"},
+      {"armbelt_main", "armholster_main" },
+      {"armbelt_off", "armholster_off"},
+      {"greaves_main", "greavesholster_main" },
+      {"greaves_off", "greavesholster_off"},
+      {"hipbelt_main", "hipholster_main" },
+      {"hipbelt_off", "hipholster_off"}
+    };
+
 	}
 
   public void set_parent_actor(UnitActor parent) {
@@ -217,6 +233,49 @@ public class SlottableAnatomy : MonoBehaviour {
     anatomy["arm_off"] = temp;
   }
 
+  public void equip_holstered(EquipData equip_data) {
+    bool success = false;
+    foreach (KeyValuePair<string, string> k in holsterables) {
+      string body_slot = k.Key;
+      string attachment = k.Value;
+
+      if (anatomy[body_slot] == null) continue;
+      EquipData slot_eq = anatomy[body_slot];
+
+      if (can_holster(slot_eq, equip_data) && anatomy[attachment] == null) {
+        Debug.Log("Holster slot found at " + body_slot + ": " + slot_eq.name);
+        anatomy[attachment] = equip_data;
+        success = true;
+        break;
+      }
+    }
+
+    if (!success) {
+      Debug.Log("Unable to find holsterable slot for " + equip_data.name);
+    }
+  }
+
+  bool can_holster(EquipData slot, EquipData item) {
+    if (slot.holster_any_weapons && item.type == "Weapon") return true;
+    if (slot.holster_not_oversize && item.is_oversize) return false;
+
+    if (item.is_axe) return slot.holster_axe;
+    if (item.is_bow) return slot.holster_bow;
+    if (item.is_crossbow) return slot.holster_crossbow;
+    if (item.is_dagger) return slot.holster_dagger;
+    if (item.is_gunpowder) return slot.holster_gunpowder;
+    if (item.is_holy_book) return slot.holster_holy_book;
+    if (item.is_mace) return slot.holster_mace;
+    if (item.is_maul) return slot.holster_maul;
+    if (item.is_mounted) return slot.holster_mounted;
+    if (item.is_scepter) return slot.holster_scepter;
+    if (item.is_spear) return slot.holster_spear;
+    if (item.is_sword) return slot.holster_sword;
+    if (item.is_whip) return slot.holster_whip;
+
+    return false;
+  }
+
   public void equip(EquipData equip_data, bool mainside = true) {
     string target = null;
     switch (equip_data.slot) {
@@ -241,8 +300,7 @@ public class SlottableAnatomy : MonoBehaviour {
       case Slot.armbelt: target = mainside ? "armbelt_main" : "armbelt_off"; break;
       case Slot.greaves: target = mainside ? "greaves_main" : "greaves_off"; break;
       case Slot.helmet: target = "helmet"; break;
-      case Slot.hip: target = "hip"; break;
-      case Slot.hipbag: target = "hipbag"; break;
+      case Slot.hipbelt: target = mainside ? "hipbelt_main" : "hipbelt_off"; break;
       default: throw new System.ArgumentException("Don't know how to equip " + equip_data.name + " to " + equip_data.slot);
     }
 
@@ -275,6 +333,10 @@ public class SlottableAnatomy : MonoBehaviour {
     anatomy[implement] = null;
 
     if (uneq != null) Debug.Log("Unequipped " + uneq.name + " from " + implement);
+    if (holsterables.ContainsKey(implement)) {
+      string cascade = holsterables[implement];
+      anatomy[cascade] = null;
+    }
     return uneq;
   }
 

@@ -32,7 +32,7 @@ arrow_steel	Ammunition	Arrow	Steel Arrow	0.1	quiver	armor_pierce: 10, is_sharp: 
 bullet_pistol	Ammunition	Bullet	Pistol Bullet	0.1	belt_toolkit	armor_pierce: 10, is_gunpowder: true, is_baggable: true
 bullet_rifle	Ammunition	Bullet	Rifle Bullet	0.1	belt_toolkit	armor_pierce: 25, is_gunpowder: true, is_baggable: true
 bullet_handcannon	Ammunition	Bullet	Handcannon Bullet	0.1	belt_toolkit	armor_pierce: 25, armor_bypass: 10, is_gunpowder: true, is_baggable: true
-holster_hip	Holster	Hip	Hip Holster	1	hip	holster_dagger: true, holster_sword: true, holster_axe: true, holster_crossbow: true, holster_gunpowder: true, holster_holy_book: true, holster_scepter: true, holster_whip: true, holster_not_oversize: true
+holster_hip	Holster	Hip	Hip Holster	1	hipbelt	holster_dagger: true, holster_sword: true, holster_axe: true, holster_crossbow: true, holster_gunpowder: true, holster_holy_book: true, holster_scepter: true, holster_whip: true, holster_not_oversize: true
 holster_slingback	Holster	Slingback	Slingback Holster	1	slingback	holster_any_weapons: true
 holster_arm	Holster	Arm	Arm Holster	1	armbelt	holster_dagger: true, bullet_capacity: 10
 axe_generic	Weapon	Axe	Axe	20	arm	armor_pierce: 25, range: 1, is_sharp: true, is_axe: true, is_throwable: true
