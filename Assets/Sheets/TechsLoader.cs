@@ -31,7 +31,6 @@ public class TechsLoader : MonoBehaviour {
 
       if (!float.TryParse(code_s, out code)) continue;
       if (code < 0f) continue;
-
       string skill_key = cell[1];
       string skill_name = cell[2];
       string activation = cell[3];

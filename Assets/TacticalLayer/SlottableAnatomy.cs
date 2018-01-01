@@ -9,7 +9,7 @@ public class SlottableAnatomy : MonoBehaviour {
                      helmet, hip, hipbag }
   public Dictionary<string, EquipData> anatomy;
   public Dictionary<string, List<EquipData>> multis;
-
+  UnitActor parent_actor;
   
 	// Use this for initialization
 	void Start () {
@@ -49,6 +49,10 @@ public class SlottableAnatomy : MonoBehaviour {
       { "greavesholster_off", new List<EquipData>() },
     };
 	}
+
+  public void set_parent_actor(UnitActor parent) {
+    parent_actor = parent;
+  }
 
   public void unequip_all() {
     foreach (string k in anatomy.Keys) {
@@ -113,11 +117,27 @@ public class SlottableAnatomy : MonoBehaviour {
     }
   }
 
+  public void swap_arms() {
+    EquipData temp = anatomy["arm_main"];
+    anatomy["arm_main"] = anatomy["arm_off"];
+    anatomy["arm_off"] = temp;
+  }
+
   public void equip(EquipData equip_data, bool mainside = true) {
     string target = null;
     switch (equip_data.slot) {
       case Slot.arm_dual: unequip("arm_main"); unequip("arm_off"); target = "arm_dual"; break;
-      case Slot.arm: unequip("arm_dual"); target = mainside ? "arm_main" : "arm_off"; break;
+      case Slot.arm:
+        unequip("arm_dual");
+        if (!parent_actor.has_tech("dual_wield")) {
+          // If Actor cannot dual wield weapon
+          // Unequip any weapons from both arms
+          unequip_if_weapon("arm_main");
+          unequip_if_weapon("arm_off");
+        }
+        target = mainside ? "arm_main" : "arm_off";
+
+        break;
       case Slot.body: target = "body"; break;
       case Slot.slingback: target = mainside ? "slingback_main" : "slingback_off"; break;
       case Slot.quiver: target = mainside ? "quiver_main" : "quiver_off"; break;
@@ -162,5 +182,13 @@ public class SlottableAnatomy : MonoBehaviour {
 
     if (uneq != null) Debug.Log("Unequipped " + uneq.name + " from " + implement);
     return uneq;
+  }
+
+  void unequip_if_weapon(string implement) {
+    EquipData uneq = anatomy[implement];
+
+    if (uneq != null && uneq.type == "Weapon") {
+      anatomy[implement] = null;
+    }
   }
 }

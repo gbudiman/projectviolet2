@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EquipsTest : MonoBehaviour {
+  UnitActor actor;
   EquipsLoader equips_loader;
   SlottableAnatomy anatomy;
   SlottableAnatomy validator;
@@ -13,8 +14,9 @@ public class EquipsTest : MonoBehaviour {
   int test_passed;
 	// Use this for initialization
 	void Start () {
+    actor = GetComponent<UnitActor>();
     equips_loader = GetComponent<EquipsLoader>();
-    anatomy = GetComponent<SlottableAnatomy>();
+    anatomy = actor.anatomy; //GetComponent<SlottableAnatomy>();
     validator = GameObject.Find("Validator").GetComponent<SlottableAnatomy>();
 
     begin_test();
@@ -35,7 +37,11 @@ public class EquipsTest : MonoBehaviour {
 
     set_test("bow_long", "arm_dual");  test("bow_long");
     set_test(null, "arm_dual"); set_test("whip", "arm_off"); test("whip", OFF);
-    set_test("scepter", "arm_main"); set_test("scepter", "arm_main"); test("scepter", MAIN);
+    set_test("scepter", "arm_main"); set_test(null, "arm_off"); test("scepter", MAIN);
+    actor.confer_tech("dual_wield");
+    set_test("whip", "arm_off"); test("whip", OFF);
+    set_test("whip", "arm_main"); set_test("scepter", "arm_off"); test_swap();
+    set_test(null, "arm_main"); test_unequip("arm_main");
     //equip("bow_long"); list();
     //equip("whip", false); list();
     //equip("scepter", true); list();
@@ -57,8 +63,20 @@ public class EquipsTest : MonoBehaviour {
     anatomy.list_equipments();
   }
 
+  void test_swap() {
+    actor.swap_arm_equips();
+    validate();
+    test_count++;
+  }
+
   void test(string equip_id, bool mainside = true) {
     equip(equip_id, mainside);
+    validate();
+    test_count++;
+  }
+
+  void test_unequip(string implement) {
+    anatomy.unequip(implement);
     validate();
     test_count++;
   }

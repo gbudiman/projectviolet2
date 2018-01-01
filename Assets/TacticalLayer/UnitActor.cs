@@ -16,6 +16,11 @@ public class UnitActor : MonoBehaviour {
   public Action action;
   public Dictionary<Action, string> tooltip_dict;
   public Dictionary<Action, string> confirmation_dict;
+
+  Dictionary<string, SkillData> techs;
+  public ActorTechs actor_techs;
+  public SlottableAnatomy anatomy;
+
 	// Use this for initialization
 	void Start () {
     hex_tile = GetComponentInParent<HexCoord>();
@@ -25,12 +30,42 @@ public class UnitActor : MonoBehaviour {
     turn_ending_attack = true;
     initialize_tooltip_dictionary();
     initialize_confirmation_dictionary();
+
+    techs = GetComponent<TechsLoader>().get_techs();
+
+    anatomy = GetComponent<SlottableAnatomy>();
+    actor_techs = GetComponent<ActorTechs>();
+
+    anatomy.set_parent_actor(this);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
+
+  void check_tech_or_raise_exception(string tech_id) {
+    if (!techs.ContainsKey(tech_id)) throw new System.ArgumentException("Invalid Tech ID " + tech_id);
+  }
+
+  public bool has_tech(string tech_id) {
+    check_tech_or_raise_exception(tech_id);
+    return actor_techs.has_tech(tech_id);
+  }
+
+  public void confer_tech(string tech_id) {
+    check_tech_or_raise_exception(tech_id);
+    actor_techs.assign(tech_id);
+  }
+
+  public void hard_remove_tech(string tech_id) {
+    check_tech_or_raise_exception(tech_id);
+    actor_techs.hard_remove(tech_id);
+  }
+
+  public void swap_arm_equips() {
+    anatomy.swap_arms();
+  }
 
   void initialize_tooltip_dictionary() {
     tooltip_dict = new Dictionary<Action, string>() {

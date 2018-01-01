@@ -256,8 +256,8 @@
 	5.3	trap_tripwire	Trap Trigger: Tripwire	Active	tile	has_installed_trap	Allows detonation by remote trigger	
 	5.3	trap_delayed_timer	Trap Trigger: Delayed Timer	Active	tile_with_own_trap	has_installed_trap	Triggers detonation on second activation	
 	5.3	trap_remove	Trap Disarm	Active	tile_with_known_trap		Remove known Trap	
-	5.3	trap_slotting_1	Trap Slotting I	Active		has_installed_trap, target_trap_is_slottable		
-	5.3	trap_slotting_2	Trap Slotting II	Active		has_installed_trap, target_trap_is_slottable		
+	5.3	trap_slotting_1	Trap Slotting I	Active		has_installed_trap, target_trap_is_slottable	Add a slot in a trap	
+	5.3	trap_slotting_2	Trap Slotting II	Active		has_installed_trap, target_trap_is_slottable	Add another slot in a trap	
 	5.3	trap_salvo	Salvo	Passive			Throwing flask does not end turn	
 	5.3	trap_flask_effect_duration	Flask Hyperdense Mix	Passive			Increase effects from Thrown Flask	
 	5.3	trap_flask_blast_radius	Flask Fragmentation Blast	Passive			Increase blast radius from thrown Flask	
@@ -469,3 +469,18 @@
 	9.3	genesis_guardian_angel	Guardian Angel	Active	ally_single		The first killing blow will not incapacitate target, but leave them with 1 HP instead	
 	9.3	genesis_divine_body	Divine Body	Active	ally_single		Target becomes immune to Poison, Fire, Ice, and Earth effects for 3 seconds	
 	9.3	genesis_karma	Karma	Passive			Successful use of Holy Skills has chance to recharge Prayer	
+	x			1.1	18		6.1	18
+	x			1.2	17		6.2	18
+	x			1.3	17		6.3	17
+	x			2.1	18		7.1	17
+	x			2.2	17		7.2	17
+	x			2.3	17		7.3	17
+	x			3.1	18		8.1	18
+	x			3.2	18		8.2	17
+	x			3.3	18		8.3	17
+	x			4.1	18		9.1	17
+	x			4.2	17		9.2	17
+	x			4.3	18		9.3	17
+	x			5.1	17			
+	x			5.2	18			
+	-99			5.3	17			
