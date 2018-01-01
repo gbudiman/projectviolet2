@@ -82,7 +82,29 @@ public class SlottableAnatomy : MonoBehaviour {
     foreach (KeyValuePair<string, List<EquipData>> multi in multis) {
       List<EquipData> mine = multi.Value;
       List<EquipData> other = other_anatomy.multis[multi.Key];
+
       if (mine.Count != other.Count) mismatch.Add(multi.Key);
+
+      List<string> my_names = new List<string>();
+      List<string> other_names = new List<string>();
+
+      foreach (EquipData x in mine) {
+        my_names.Add(x.name);
+      }
+
+      foreach (EquipData x in other) {
+        other_names.Add(x.name);
+      }
+
+      my_names.Sort();
+      other_names.Sort();
+      for (int i = 0; i < mine.Count; i++) {
+        if (my_names[i] != other_names[i]) {
+          mismatch.Add(multi.Key);
+          break;
+        }
+      }
+      
     }
 
     return mismatch;

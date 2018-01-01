@@ -42,6 +42,9 @@ public class EquipsTest : MonoBehaviour {
     set_test("whip", "arm_off"); test("whip", OFF);
     set_test("whip", "arm_main"); set_test("scepter", "arm_off"); test_swap();
     set_test(null, "arm_main"); test_unequip("arm_main");
+    set_test("quiver_slingback", "slingback_main"); test("quiver_slingback", MAIN);
+
+    set_multitest("arrow_iron", "quiver_main", 7); test_multi("arrow_iron", 7, MAIN);
     //equip("bow_long"); list();
     //equip("whip", false); list();
     //equip("scepter", true); list();
@@ -75,6 +78,12 @@ public class EquipsTest : MonoBehaviour {
     test_count++;
   }
 
+  void test_multi(string equip_id, int amount, bool mainside = true) {
+    add(equip_id, amount, mainside);
+    validate();
+    test_count++;
+  }
+
   void test_unequip(string implement) {
     anatomy.unequip(implement);
     validate();
@@ -90,6 +99,13 @@ public class EquipsTest : MonoBehaviour {
     }
   }
 
+  void set_multitest(string equip_id, string implement, int amount) {
+    List<EquipData> m = validator.multis[implement];
+    for (int i = 0; i < amount; i++) {
+      m.Add(equips_loader.equips[equip_id]);
+    }
+  }
+
   void set_clear() {
     validator.unequip_all();
   }
@@ -98,11 +114,26 @@ public class EquipsTest : MonoBehaviour {
     List<string> invalids = anatomy.equals(validator);
 
     foreach (string invalid_implement in invalids) {
-      Debug.Log("Checking implement " + invalid_implement);
       string test = anatomy.anatomy[invalid_implement] == null ? "Empty" : anatomy.anatomy[invalid_implement].name;
       string expectation = validator.anatomy[invalid_implement] == null ? "Empty" : validator.anatomy[invalid_implement].name;
 
-      Debug.Log("Anatomy: " + invalid_implement + " - Expected " + expectation + " | Got " + test);
+      if (!anatomy.multis.ContainsKey(invalid_implement)) {
+        Debug.Log("Anatomy: " + invalid_implement + " - Expected " + expectation + " | Got " + test);
+      } else {
+        string exp_s = "";
+        string got_s = "";
+        foreach (EquipData e in validator.multis[invalid_implement]) {
+          exp_s += e.name + "\n";
+        }
+
+        foreach (EquipData e in anatomy.multis[invalid_implement]) {
+          got_s += e.name + "\n";
+        }
+
+        Debug.Log("Anatomy: " + invalid_implement + "\n" + 
+                  "Expected (" + validator.multis[invalid_implement].Count.ToString() + "): \n" + exp_s + "\n" +
+                  "Got (" + anatomy.multis[invalid_implement].Count.ToString() + "): \n" + got_s);
+      }
     }
 
     if (invalids.Count > 0) {
