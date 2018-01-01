@@ -47,6 +47,7 @@ public class UnitActor : MonoBehaviour {
     return action_controller.get_actions();
   }
 
+#region Techs
   void check_tech_or_raise_exception(string tech_id) {
     if (!techs.ContainsKey(tech_id)) throw new System.ArgumentException("Invalid Tech ID " + tech_id);
   }
@@ -67,9 +68,22 @@ public class UnitActor : MonoBehaviour {
     actor_techs.hard_remove(tech_id);
   }
 
+  public void enable_tech(string tech_id, bool val = true) {
+    check_tech_or_raise_exception(tech_id);
+    actor_techs.enable(tech_id, val);
+  }
+  #endregion
+
+#region Equips
   public void swap_arm_equips() {
     anatomy.swap_arms();
   }
+
+  public bool check_has_equipment_with_attributes(List<string> attb) {
+    return anatomy.check_has_equipment_with_attributes(attb);
+  }
+
+#endregion
 
   void initialize_tooltip_dictionary() {
     //tooltip_dict = new Dictionary<Action, string>() {

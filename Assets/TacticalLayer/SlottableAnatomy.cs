@@ -179,7 +179,7 @@ public class SlottableAnatomy : MonoBehaviour {
     multis[implement] = new List<EquipData>();
   }
 
-  public bool take_from_multis(string equip_id, int amount) {
+  public bool take_from_multis(string equip_id, int amount, bool test_only = false) {
     bool has_enough = false;
     int count = 0;
     List<string> records = new List<string>();
@@ -197,7 +197,7 @@ public class SlottableAnatomy : MonoBehaviour {
       if (has_enough) break;
     }
 
-    if (has_enough) {
+    if (has_enough && !test_only) {
       int removed = 0;
       foreach (string record in records) {
         remove_one_from_multi(equip_id, record);
@@ -225,6 +225,10 @@ public class SlottableAnatomy : MonoBehaviour {
       case "arrow_capacity": return anatomy[implement].arrow_capacity;
       default: throw new System.ArgumentException("Unknown multis " + implement);
     }
+  }
+
+  public bool check_has_equipment_with_attributes(List<string> attributes) {
+    return false;
   }
 
   public void swap_arms() {

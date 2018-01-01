@@ -22,6 +22,10 @@ public class ActorTechs : MonoBehaviour {
     techs.Remove(skill_id);
   }
 
+  public void enable(string skill_id, bool val = true) {
+    techs[skill_id] = val;
+  }
+
   public bool has_tech(string skill_id) {
     return techs.ContainsKey(skill_id) && techs[skill_id];
   }
