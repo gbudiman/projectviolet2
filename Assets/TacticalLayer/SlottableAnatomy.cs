@@ -7,9 +7,10 @@ public class SlottableAnatomy : MonoBehaviour {
                      gauntlet, arm, arm_dual, armbelt,
                      greaves,
                      helmet, hip, hipbag }
-  Dictionary<string, EquipData> anatomy;
-  Dictionary<string, List<EquipData>> multis;
+  public Dictionary<string, EquipData> anatomy;
+  public Dictionary<string, List<EquipData>> multis;
 
+  
 	// Use this for initialization
 	void Start () {
     anatomy = new Dictionary<string, EquipData>() {
@@ -39,16 +40,49 @@ public class SlottableAnatomy : MonoBehaviour {
     };
 
     multis = new Dictionary<string, List<EquipData>>() {
-      { "quiver", new List<EquipData>() },
+      { "quiver_main", new List<EquipData>() },
+      { "quiver_off", new List<EquipData>() },
       { "belt_toolkit", new List<EquipData>() },
       { "armholster_main", new List<EquipData>() },
       { "armholster_off", new List<EquipData>() },
-      { "quiver_main", new List<EquipData>() },
-      { "quiver_off", new List<EquipData>() },
       { "greavesholster_main", new List<EquipData>() },
       { "greavesholster_off", new List<EquipData>() },
     };
 	}
+
+  public void unequip_all() {
+    foreach (string k in anatomy.Keys) {
+      anatomy[k] = null;
+    }
+
+    foreach (string k in multis.Keys) {
+      multis[k] = new List<EquipData>();
+    }
+  }
+
+  public List<string> equals(SlottableAnatomy other_anatomy) {
+    List<string> mismatch = new List<string>();
+
+    foreach (KeyValuePair<string, EquipData> a in anatomy) {
+      EquipData mine = a.Value;
+      EquipData other = other_anatomy.anatomy[a.Key];
+      if (mine == null && other == null) continue;
+      if (mine == null && other != null || mine != null && other == null || mine.name != other.name) {
+        mismatch.Add(a.Key);
+        //return false;
+      }
+      //if (mine == null && other == null) return true;
+      //if (mine.name != other.name) return false;
+    }
+
+    foreach (KeyValuePair<string, List<EquipData>> multi in multis) {
+      List<EquipData> mine = multi.Value;
+      List<EquipData> other = other_anatomy.multis[multi.Key];
+      if (mine.Count != other.Count) mismatch.Add(multi.Key);
+    }
+
+    return mismatch;
+  }
 
   // Update is called once per frame
   void Update() {
