@@ -9,6 +9,7 @@ public class EquipsTest : MonoBehaviour {
   SlottableAnatomy validator;
   const bool MAIN = true;
   const bool OFF = false;
+  const bool APPEND = true;
 
   int test_count;
   int test_passed;
@@ -45,11 +46,13 @@ public class EquipsTest : MonoBehaviour {
     set_test("quiver_slingback", "slingback_main"); test("quiver_slingback", MAIN);
 
     set_multitest("arrow_iron", "quiver_main", 7); test_multi("arrow_iron", 7, MAIN);
-    //equip("bow_long"); list();
-    //equip("whip", false); list();
-    //equip("scepter", true); list();
-    //equip("quiver_slingback", true); list();
-    //add("arrow_iron", 7); list();
+    set_multitest("arrow_steel", "quiver_main", 18, APPEND); test_multi("arrow_steel", 18, MAIN);
+    test_multi("arrow_iron", 1, MAIN);
+    set_multiremove("arrow_steel", "quiver_main", 3); test_multiremove("arrow_steel", 3);
+    set_multitest(null, "quiver_main"); test_empty_multi("quiver_main");
+    set_test(null, "slingback_main"); test_unequip("slingback_main");
+    set_multitest(null, "quiver_main"); test_multi("arrow_iron", 5, MAIN);
+
   }
 
   void equip(string s, bool mainside = true) {
@@ -84,6 +87,18 @@ public class EquipsTest : MonoBehaviour {
     test_count++;
   }
 
+  void test_multiremove(string equip_id, int amount) {
+    anatomy.take_from_multis(equip_id, amount);
+    validate();
+    test_count++;
+  }
+
+  void test_empty_multi(string implement) {
+    anatomy.empty_multis(implement);
+    validate();
+    test_count++;
+  }
+
   void test_unequip(string implement) {
     anatomy.unequip(implement);
     validate();
@@ -99,10 +114,27 @@ public class EquipsTest : MonoBehaviour {
     }
   }
 
-  void set_multitest(string equip_id, string implement, int amount) {
+  void set_multitest(string equip_id, string implement, int amount = 1, bool append = false) {
+    if (!append || equip_id == null) {
+      validator.empty_multis(implement);
+
+      if (equip_id == null) return;
+    }
+
     List<EquipData> m = validator.multis[implement];
+
     for (int i = 0; i < amount; i++) {
       m.Add(equips_loader.equips[equip_id]);
+    }
+  }
+
+  void set_multiremove(string equip_id, string implement, int amount) {
+    int removed = 0;
+    for (int i = validator.multis[implement].Count - 1; i >= 0 && removed < amount; i--) {
+      if (validator.multis[implement][i].key == equip_id) {
+        validator.multis[implement].RemoveAt(i);
+        removed++;
+      }
     }
   }
 

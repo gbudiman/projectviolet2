@@ -71,29 +71,29 @@ public class SlottableAnatomy : MonoBehaviour {
       EquipData mine = a.Value;
       EquipData other = other_anatomy.anatomy[a.Key];
       if (mine == null && other == null) continue;
-      if (mine == null && other != null || mine != null && other == null || mine.name != other.name) {
+      if (mine == null && other != null || mine != null && other == null || mine.key != other.key) {
         mismatch.Add(a.Key);
-        //return false;
       }
-      //if (mine == null && other == null) return true;
-      //if (mine.name != other.name) return false;
     }
 
     foreach (KeyValuePair<string, List<EquipData>> multi in multis) {
       List<EquipData> mine = multi.Value;
       List<EquipData> other = other_anatomy.multis[multi.Key];
 
-      if (mine.Count != other.Count) mismatch.Add(multi.Key);
+      if (mine.Count != other.Count) {
+        mismatch.Add(multi.Key);
+        break;
+      }
 
       List<string> my_names = new List<string>();
       List<string> other_names = new List<string>();
 
       foreach (EquipData x in mine) {
-        my_names.Add(x.name);
+        my_names.Add(x.key);
       }
 
       foreach (EquipData x in other) {
-        other_names.Add(x.name);
+        other_names.Add(x.key);
       }
 
       my_names.Sort();
@@ -122,12 +122,71 @@ public class SlottableAnatomy : MonoBehaviour {
         string target = mainside ? "quiver_main" : "quiver_off";
         int maxes = get_capacity(source, "arrow_capacity");
 
+        
+
         if (maxes > 0) {
+          bool overflow = false;
           for (int i = 0; i < amount; i++) {
+            if (multis[target].Count >= maxes) {
+              Debug.Log("Overflow " + (amount - i).ToString() + " " + equip_data.name);
+              overflow = true;
+              break;
+            }
             multis[target].Add(equip_data);
           }
+
+          if (overflow) {
+          } else {
+            Debug.Log("Loaded " + amount + " " + equip_data.name + " to " + target);
+          }
+        } else {
+          Debug.Log("No available Quiver to store " + amount + " " + equip_data.name);
         }
         break;
+    }
+  }
+
+  public void empty_multis(string implement) {
+    multis[implement] = new List<EquipData>();
+  }
+
+  public bool take_from_multis(string equip_id, int amount) {
+    bool has_enough = false;
+    int count = 0;
+    List<string> records = new List<string>();
+
+    foreach (KeyValuePair<string, List<EquipData>> p in multis) {
+      string multi = p.Key;
+      foreach (EquipData eq in p.Value) {
+        if (eq.key == equip_id) {
+          count++;
+          records.Add(multi);
+        }
+      }
+
+      has_enough = count > amount;
+      if (has_enough) break;
+    }
+
+    if (has_enough) {
+      int removed = 0;
+      foreach (string record in records) {
+        remove_one_from_multi(equip_id, record);
+        removed++;
+
+        if (removed == amount) break;
+      }
+    }
+
+    return has_enough;
+  }
+
+  void remove_one_from_multi(string equip_id, string implement) {
+    for (int i = 0; i < multis[implement].Count; i++) { 
+      if (equip_id == multis[implement][i].key) {
+        multis[implement].RemoveAt(i);
+        break;
+      }
     }
   }
 
