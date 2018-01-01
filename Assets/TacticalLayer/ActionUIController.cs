@@ -38,21 +38,20 @@ public class ActionUIController : MonoBehaviour {
   }
 
   public void action_attack() {
-    //actor.expend_ap(actor.apc_attack, actor.turn_ending_attack);
-    actor.set_action(UnitActor.Action.attack);
+    //actor.set_action(UnitActor.Action.attack);
   }
 
   public void set_actor(UnitActor _actor) {
-    actor = _actor;
-    actor.highlight_as_active();
-    actor.set_default_action();
-    tooltip.text = actor.get_tooltip();
+    //actor = _actor;
+    //actor.highlight_as_active();
+    //actor.set_default_action();
+    //tooltip.text = actor.get_tooltip();
   }
 
   public void paint_target(bool val=true) {
-    if (actor == null) return;
+    //if (actor == null) return;
 
-    tooltip.text = val ? actor.get_confirmation() : actor.get_tooltip();
+    //tooltip.text = val ? actor.get_confirmation() : actor.get_tooltip();
   }
 
   public HexCoord get_active_actor_position() {
@@ -64,6 +63,6 @@ public class ActionUIController : MonoBehaviour {
   }
 
   public void execute_selected_action() {
-    actor.execute_action();
+    //actor.execute_action();
   }
 }

@@ -286,6 +286,7 @@
     <Compile Include="Assets\HexTiles\HexCoord.cs" />
     <Compile Include="Assets\Sheets\EquipsLoader.cs" />
     <Compile Include="Assets\Sheets\TechsLoader.cs" />
+    <Compile Include="Assets\TacticalLayer\ActionController.cs" />
     <Compile Include="Assets\TacticalLayer\ActionUIController.cs" />
     <Compile Include="Assets\TacticalLayer\ActorActionController.cs" />
     <Compile Include="Assets\TacticalLayer\ActorTechs.cs" />
@@ -293,6 +294,7 @@
     <Compile Include="Assets\TacticalLayer\TacticalGameController.cs" />
     <Compile Include="Assets\TacticalLayer\TacticalMap.cs" />
     <Compile Include="Assets\TacticalLayer\UnitActor.cs" />
+    <Compile Include="Assets\TestHarness\ActorTest.cs" />
     <Compile Include="Assets\TestHarness\EquipsTest.cs" />
     <Compile Include="Assets\TurnMeterController.cs" />
   </ItemGroup>

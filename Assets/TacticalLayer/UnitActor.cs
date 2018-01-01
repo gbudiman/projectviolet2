@@ -12,14 +12,10 @@ public class UnitActor : MonoBehaviour {
   TacticalMap tactical_map;
   TurnMeterController turn_meter_controller;
 
-  public enum Action { attack };
-  public Action action;
-  public Dictionary<Action, string> tooltip_dict;
-  public Dictionary<Action, string> confirmation_dict;
-
   Dictionary<string, SkillData> techs;
   public ActorTechs actor_techs;
   public SlottableAnatomy anatomy;
+  public ActionController action_controller;
 
 	// Use this for initialization
 	void Start () {
@@ -35,14 +31,21 @@ public class UnitActor : MonoBehaviour {
 
     anatomy = GetComponent<SlottableAnatomy>();
     actor_techs = GetComponent<ActorTechs>();
+    action_controller = GetComponent<ActionController>();
 
     anatomy.set_parent_actor(this);
+    action_controller.set_parent_actor(this);
+    action_controller.set_tech_dict(techs);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
+
+  public Dictionary<string, bool> get_actions() {
+    return action_controller.get_actions();
+  }
 
   void check_tech_or_raise_exception(string tech_id) {
     if (!techs.ContainsKey(tech_id)) throw new System.ArgumentException("Invalid Tech ID " + tech_id);
@@ -56,6 +59,7 @@ public class UnitActor : MonoBehaviour {
   public void confer_tech(string tech_id) {
     check_tech_or_raise_exception(tech_id);
     actor_techs.assign(tech_id);
+    action_controller.apply_techs();
   }
 
   public void hard_remove_tech(string tech_id) {
@@ -68,15 +72,15 @@ public class UnitActor : MonoBehaviour {
   }
 
   void initialize_tooltip_dictionary() {
-    tooltip_dict = new Dictionary<Action, string>() {
-      {Action.attack, "Select adjacent target to commence melee attack" }
-    };
+    //tooltip_dict = new Dictionary<Action, string>() {
+    //  {Action.attack, "Select adjacent target to commence melee attack" }
+    //};
   }
 
   void initialize_confirmation_dictionary() {
-    confirmation_dict = new Dictionary<Action, string>() {
-      {Action.attack, "Click to attack this target" }
-    };
+    //confirmation_dict = new Dictionary<Action, string>() {
+    //  {Action.attack, "Click to attack this target" }
+    //};
   }
 
   public void initialize(float _ap_fill_rate, TurnMeterController _tmc) {
@@ -123,27 +127,27 @@ public class UnitActor : MonoBehaviour {
     return (100f - current_ap) / ap_fill_rate;
   }
 
-  public void set_default_action() {
-    action = Action.attack;
-  }
+  //public void set_default_action() {
+  //  action = Action.attack;
+  //}
 
-  public void set_action(Action a) {
-    action = a;
-  }
+  //public void set_action(Action a) {
+  //  action = a;
+  //}
 
-  public string get_tooltip() {
-    return tooltip_dict[action];
-  }
+  //public string get_tooltip() {
+  //  return tooltip_dict[action];
+  //}
 
-  public string get_confirmation() {
-    return confirmation_dict[action];
-  }
+  //public string get_confirmation() {
+  //  return confirmation_dict[action];
+  //}
 
-  public void execute_action() {
-    switch (action) {
-      case Action.attack: expend_ap(apc_attack, turn_ending_attack); break;
-    }
-  }
+  //public void execute_action() {
+  //  switch (action) {
+  //    case Action.attack: expend_ap(apc_attack, turn_ending_attack); break;
+  //  }
+  //}
 
   public void highlight_as_active() {
     hex_tile.highlight_as_active();

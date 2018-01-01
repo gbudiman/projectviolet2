@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ActorTechs : MonoBehaviour {
-  Dictionary<string, bool> techs;
+  public Dictionary<string, bool> techs;
 	// Use this for initialization
 	void Start () {
     techs = new Dictionary<string, bool>();

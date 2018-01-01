@@ -68,24 +68,24 @@ public class HexCoord : MonoBehaviour {
   }
 
   public void highlight(bool val = true) {
-    if (!is_active) {
+    //if (!is_active) {
 
-      if (action_ui_controller.get_active_actor() != null
-        && action_ui_controller.get_active_actor().action == UnitActor.Action.attack) {
-        HexCoord active_actor_position = action_ui_controller.get_active_actor_position();
+    //  if (action_ui_controller.get_active_actor() != null
+    //    && action_ui_controller.get_active_actor().action == UnitActor.Action.attack) {
+    //    HexCoord active_actor_position = action_ui_controller.get_active_actor_position();
 
-        if (this.is_adjacent_to(active_actor_position) && tile_has_valid_target()) {
-          sprite.color = val ? ColorController.tile_valid_target : ColorController.tile_neutral;
-          action_ui_controller.paint_target();
-        } else {
-          sprite.color = val ? ColorController.tile_highlighted : ColorController.tile_neutral;
-          action_ui_controller.paint_target(false);
-        }
-      } else {
-        sprite.color = val ? ColorController.tile_highlighted : ColorController.tile_neutral;
-        action_ui_controller.paint_target(false);
-      }
-    }
+    //    if (this.is_adjacent_to(active_actor_position) && tile_has_valid_target()) {
+    //      sprite.color = val ? ColorController.tile_valid_target : ColorController.tile_neutral;
+    //      action_ui_controller.paint_target();
+    //    } else {
+    //      sprite.color = val ? ColorController.tile_highlighted : ColorController.tile_neutral;
+    //      action_ui_controller.paint_target(false);
+    //    }
+    //  } else {
+    //    sprite.color = val ? ColorController.tile_highlighted : ColorController.tile_neutral;
+    //    action_ui_controller.paint_target(false);
+    //  }
+    //}
   }
 
   public void highlight_as_active(bool val = true) {
