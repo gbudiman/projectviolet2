@@ -13,6 +13,7 @@ public class UnitActor : MonoBehaviour {
   TurnMeterController turn_meter_controller;
 
   Dictionary<string, SkillData> techs;
+  Dictionary<string, EquipData> equips;
   public ActorTechs actor_techs;
   public SlottableAnatomy anatomy;
   public ActionController action_controller;
@@ -28,6 +29,7 @@ public class UnitActor : MonoBehaviour {
     initialize_confirmation_dictionary();
 
     techs = GetComponent<TechsLoader>().get_techs();
+    equips = GetComponent<EquipsLoader>().equips;
 
     anatomy = GetComponent<SlottableAnatomy>();
     actor_techs = GetComponent<ActorTechs>();
@@ -72,11 +74,24 @@ public class UnitActor : MonoBehaviour {
     check_tech_or_raise_exception(tech_id);
     actor_techs.enable(tech_id, val);
   }
+
   #endregion
 
 #region Equips
+  void check_item_or_raise_exception(string item) {
+    if (!equips.ContainsKey(item)) throw new System.ArgumentException("Invalid Item ID " + item);
+  }
+
+  public void equip(string s) {
+    anatomy.equip(equips[s]);
+  }
+
   public void swap_arm_equips() {
     anatomy.swap_arms();
+  }
+
+  public bool check_has_equipment_with_attributes(string attb) {
+    return anatomy.check_has_equipment_with_attributes(attb);
   }
 
   public bool check_has_equipment_with_attributes(List<string> attb) {

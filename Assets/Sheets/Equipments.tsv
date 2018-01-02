@@ -19,9 +19,9 @@ tower_leather	Shield	Tower	Leatherhide	2	arm	durability: 100, block_rate: 50
 tower_plated	Shield	Tower	Plated	10	arm	durability: 2000, block_rate: 10
 quiver_slingback	Accessories	Slingback	Slingback Quiver	1	slingback	arrow_capacity: 25
 belt_generic	Accessories	Belt	Belt Generic	1	belt	belt_capacity: 2
-sword_short	Weapon	Shortsword	Shortsword	10	arm	armor_pierce: 10, range: 1, is_sharp: true, is_sword: true, is_throwable: true
-sword_generic	Weapon	Sword	Sword	20	arm	armor_pierce: 10, range: 1, is_sharp: true, is_sword: true, is_throwable: true
-sword_great	Weapon	Greatsword	Greatsword	50	arm	armor_pierce: 10, range: 1, is_sharp: true, is_sword: true, is_oversize: true, is_throwable: true
+sword_short	Weapon	Shortsword	Shortsword	10	arm	armor_pierce: 10, range: 1, is_sharp: true, is_sword: true, is_throwable: true, is_melee: true
+sword_generic	Weapon	Sword	Sword	20	arm	armor_pierce: 10, range: 1, is_sharp: true, is_sword: true, is_throwable: true, is_melee: true
+sword_great	Weapon	Greatsword	Greatsword	50	arm	armor_pierce: 10, range: 1, is_sharp: true, is_sword: true, is_oversize: true, is_throwable: true, is_melee: true
 bow_short	Weapon	Shortbow	Shortbow	1	arm_dual	range: 3, draw_weight: 30, is_ranged: true, is_bow: true
 bow_long	Weapon	Longbow	Longbow	2	arm_dual	armor_bypass: 10, range: 5, draw_weight: 50, is_ranged: true, is_bow: true
 crossbow	Weapon	Crossbow	Crossbow	1	arm	range: 7, is_ranged: true, is_crossbow: true
@@ -29,24 +29,24 @@ mounted_crossbow	Weapon	Mounted Crossbow	Mounted Crossbow	1	gauntlet	range: 5, i
 mounted_pistol	Weapon	Mounted Pistol	Mounted Pistol	5	gauntlet	range: 7, is_ranged: true, is_gunpowder: true, is_mounted: true
 arrow_iron	Ammunition	Arrow	Iron Arrow	0.1	quiver	armor_pierce: 5, is_sharp: true
 arrow_steel	Ammunition	Arrow	Steel Arrow	0.1	quiver	armor_pierce: 10, is_sharp: true
-bullet_pistol	Ammunition	Bullet	Pistol Bullet	0.1	belt_toolkit	armor_pierce: 10, is_gunpowder: true, is_baggable: true
-bullet_rifle	Ammunition	Bullet	Rifle Bullet	0.1	belt_toolkit	armor_pierce: 25, is_gunpowder: true, is_baggable: true
-bullet_handcannon	Ammunition	Bullet	Handcannon Bullet	0.1	belt_toolkit	armor_pierce: 25, armor_bypass: 10, is_gunpowder: true, is_baggable: true
-holster_hip	Holster	Hip	Hip Holster	1	hipbelt	holster_dagger: true, holster_sword: true, holster_axe: true, holster_crossbow: true, holster_gunpowder: true, holster_holy_book: true, holster_scepter: true, holster_whip: true, holster_not_oversize: true
+bullet_pistol	Ammunition	Bullet	Pistol Bullet	0.1	belt_toolkit	armor_pierce: 10, is_baggable: true
+bullet_rifle	Ammunition	Bullet	Rifle Bullet	0.1	belt_toolkit	armor_pierce: 25, is_baggable: true
+bullet_handcannon	Ammunition	Bullet	Handcannon Bullet	0.1	belt_toolkit	armor_pierce: 25, armor_bypass: 10, is_baggable: true
+holster_hip	Holster	Hip	Hip Holster	1	hipbelt	holster_dagger: true, holster_sword: true, holster_axe: true, holster_crossbow: true, holster_gunpowder: true, holster_holy_book: true, holster_scepter: true, holster_whip: true, holster_mace: true, holster_not_oversize: true
 holster_slingback	Holster	Slingback	Slingback Holster	1	slingback	holster_any_weapons: true
 holster_arm	Holster	Arm	Arm Holster	1	armbelt	holster_dagger: true, bullet_capacity: 10
-axe_generic	Weapon	Axe	Axe	20	arm	armor_pierce: 25, range: 1, is_sharp: true, is_axe: true, is_throwable: true
-axe_great	Weapon	Greataxe	Greataxe	50	arm	armor_pierce: 25, range: 1, is_sharp: true, is_axe: true, is_oversize: true, is_throwable: true
-spear_generic	Weapon	Spear	Spear	25	arm	armor_pierce: 10, range: 1, is_sharp: true, is_spear: true, is_oversize: true, is_throwable: true
-spear_halberd	Weapon	Halberd	Halberd	50	arm	armor_pierce: 10, range: 1, is_sharp: true, is_spear: true, is_oversize: true, is_throwable: true
-mace	Weapon	Mace	Mace	10	arm	armor_pierce: 0, armor_bypass: 10, range: 1, is_blunt: true, is_mace: true, is_throwable: true
-whip	Weapon	Whip	Whip	5	arm	range: 5, is_whip: true
-claw	Weapon	Claw	Claw	1	gauntlet	armor_pierce: 10, range: 1, block_rate: 5, is_sharp: true, is_claw: true
-dagger	Weapon	Dagger	Dagger	5	arm	armor_pierce: 10, range: 1, is_sharp: true, is_dagger: true, is_throwable: true
-gunpowder_pistol	Weapon	Pistol	Pistol	5	arm	range: 7, ammo_chamber: 6, is_throwable: true
-gunpowder_rifle	Weapon	Rifle	Rifle	10	arm	range: 10, ammo_chamber: 6, is_rifled: true, is_throwable: true
-gunpowder_handcannon	Weapon	Handcannon	Handcannon	10	arm	range: 3, ammo_chamber: 1, is_handcannon: true, is_throwable: true
-maul	Weapon	Maul	Maul	50	arm	armor_pierce: 10, armor_bypass: 25, range: 1, is_maul: true
+axe_generic	Weapon	Axe	Axe	20	arm	armor_pierce: 25, range: 1, is_sharp: true, is_axe: true, is_throwable: true, is_melee: true
+axe_great	Weapon	Greataxe	Greataxe	50	arm	armor_pierce: 25, range: 1, is_sharp: true, is_axe: true, is_oversize: true, is_throwable: true, is_melee: true
+spear_generic	Weapon	Spear	Spear	25	arm	armor_pierce: 10, range: 1, is_sharp: true, is_spear: true, is_oversize: true, is_throwable: true, is_melee: true
+spear_halberd	Weapon	Halberd	Halberd	50	arm	armor_pierce: 10, range: 1, is_sharp: true, is_spear: true, is_oversize: true, is_throwable: true, is_melee: true
+mace	Weapon	Mace	Mace	10	arm	armor_pierce: 0, armor_bypass: 10, range: 1, is_blunt: true, is_mace: true, is_throwable: true, is_melee: true
+whip	Weapon	Whip	Whip	5	arm	range: 5, is_whip: true, is_melee: true
+claw	Weapon	Claw	Claw	1	gauntlet	armor_pierce: 10, range: 1, block_rate: 5, is_sharp: true, is_claw: true, is_melee: true
+dagger	Weapon	Dagger	Dagger	5	arm	armor_pierce: 10, range: 1, is_sharp: true, is_dagger: true, is_throwable: true, is_melee: true
+gunpowder_pistol	Weapon	Pistol	Pistol	5	arm	range: 7, ammo_chamber: 6, is_throwable: true, is_gunpowder: true
+gunpowder_rifle	Weapon	Rifle	Rifle	10	arm	range: 10, ammo_chamber: 6, is_rifled: true, is_throwable: true, is_gunpowder: true
+gunpowder_handcannon	Weapon	Handcannon	Handcannon	10	arm	range: 3, ammo_chamber: 1, is_handcannon: true, is_throwable: true, is_gunpowder: true
+maul	Weapon	Maul	Maul	50	arm	armor_pierce: 10, armor_bypass: 25, range: 1, is_maul: true, is_melee: true
 holy_book	Weapon	Holy Book	Holy Book	1	arm	range: 1, is_holy_book: true, is_throwable: true
-scepter	Weapon	Scepter	Scepter	5	arm	range: 1, is_blunt: true, is_scepter: true, is_throwable: true
-throwing_shuriken	Weapon	Shuriken	Shuriken	0.1	belt_toolkit	armor_pierce: 10, range: 3, is_sharp: true, is_dedicated_throwable: true, is_baggable: true
+scepter	Weapon	Scepter	Scepter	5	arm	range: 1, is_blunt: true, is_scepter: true, is_throwable: true, is_melee: true
+throwing_shuriken	Weapon	Shuriken	Shuriken	0.1	belt_toolkit	armor_pierce: 10, range: 3, is_sharp: true, is_dedicated_throwable: true, is_baggable: true, is_throwable: true

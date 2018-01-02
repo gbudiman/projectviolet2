@@ -90,6 +90,7 @@ public class EquipData {
   public bool is_sharp = false;
   public bool is_blunt = false;
   public bool is_ranged = false;
+  public bool is_melee = false;
   public bool is_gunpowder = false;
   public bool is_mounted = false;
   public bool is_baggable = false;
@@ -188,6 +189,7 @@ public class EquipData {
       case "is_gunpowder": is_gunpowder = true; break;
       case "is_mounted": is_mounted = true; break;
       case "is_baggable": is_baggable = true; break;
+      case "is_melee": is_melee = true; break;
       case "is_axe": is_axe = true; break;
       case "is_sword": is_sword = true; break;
       case "is_oversize": is_oversize = true; break;
@@ -212,6 +214,7 @@ public class EquipData {
       case "holster_axe": holster_axe = true; break;
       case "holster_crossbow": holster_crossbow = true; break;
       case "holster_bow": holster_bow = true; break;
+      case "holster_mace": holster_mace = true; break;
       case "holster_gunpowder": holster_gunpowder = true; break;
       case "holster_holy_book": holster_holy_book = true; break;
       case "holster_scepter": holster_scepter = true; break;

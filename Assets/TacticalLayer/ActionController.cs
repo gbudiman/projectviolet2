@@ -41,6 +41,28 @@ public class ActionController : MonoBehaviour {
   }
 
   public Dictionary<string, bool> get_actions() {
-    return actions;
+    return recalculate_actions();
+  }
+
+  Dictionary<string, bool> recalculate_actions() {
+    Dictionary<string, bool> valid_actions = new Dictionary<string, bool>(actions);
+
+    if (!actor.check_has_equipment_with_attributes("is_melee")) {
+      valid_actions["attack_melee"] = false;
+    }
+
+    if (!actor.check_has_equipment_with_attributes(new List<string>() { { "is_bow" }, { "is_crossbow" } })) {
+      valid_actions["attack_bow"] = false;
+    } 
+
+    if (!actor.check_has_equipment_with_attributes("is_gunpowder")) {
+      valid_actions["attack_firearm"] = false;
+    }
+
+    if (!actor.check_has_equipment_with_attributes(new List<string>() { { "is_throwable"}, { "is_dedicated_throwable"} })) {
+      valid_actions["throw"] = false;
+    }
+
+    return valid_actions;
   }
 }

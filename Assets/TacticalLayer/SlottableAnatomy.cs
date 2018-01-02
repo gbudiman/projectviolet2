@@ -227,8 +227,52 @@ public class SlottableAnatomy : MonoBehaviour {
     }
   }
 
-  public bool check_has_equipment_with_attributes(List<string> attributes) {
+  public bool check_has_equipment_with_attributes(string attb) {
+    bool is_true = false;
+    foreach (EquipData eq in anatomy.Values) {
+      if (eq == null) continue;
+      switch (attb) {
+        case "is_sharp": is_true |= eq.is_sharp;  break;
+        case "is_blunt": is_true |= eq.is_blunt; break;
+        case "is_gunpowder": is_true |= eq.is_gunpowder; break;
+        case "is_mounted": is_true |= eq.is_mounted; break;
+        case "is_baggable": is_true |= eq.is_baggable; break;
+        case "is_melee": is_true |= eq.is_melee; break;
+        case "is_axe": is_true |= eq.is_axe; break;
+        case "is_sword": is_true |= eq.is_sword; break;
+        case "is_oversize": is_true |= eq.is_oversize; break;
+        case "is_ranged": is_true |= eq.is_ranged; break;
+        case "is_bow": is_true |= eq.is_bow; break;
+        case "is_crossbow": is_true |= eq.is_crossbow; break;
+        case "is_rifled": is_true |= eq.is_rifled; break;
+        case "is_spear": is_true |= eq.is_spear; break;
+        case "is_handcannon": is_true |= eq.is_handcannon; break;
+        case "is_maul": is_true |= eq.is_maul; break;
+        case "is_whip": is_true |= eq.is_whip; break;
+        case "is_holy_book": is_true |= eq.is_holy_book; break;
+        case "is_scepter": is_true |= eq.is_scepter; break;
+        case "is_mace": is_true |= eq.is_mace; break;
+        case "is_claw": is_true |= eq.is_claw; break;
+        case "is_dagger": is_true |= eq.is_dagger; break;
+        case "is_throwable": is_true |= eq.is_throwable; break;
+        case "is_dedicated_throwable": is_true |= eq.is_dedicated_throwable; break;
+        default: throw new System.ArgumentException("Unknown equipment attribute " + attb);
+      }
+
+      if (is_true) return true;
+    }
+
     return false;
+  }
+
+  public bool check_has_equipment_with_attributes(List<string> attributes) {
+    bool is_true = false;
+
+    foreach (string attb in attributes) {
+      is_true |= check_has_equipment_with_attributes(attb);
+    }
+
+    return is_true;
   }
 
   public void swap_arms() {
