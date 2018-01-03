@@ -179,10 +179,11 @@ public class SlottableAnatomy : MonoBehaviour {
     multis[implement] = new List<EquipData>();
   }
 
-  public bool take_from_multis(string equip_id, int amount, bool test_only = false) {
+  public List<EquipData> take_from_multis(string equip_id, int amount = 1, bool test_only = false) {
     bool has_enough = false;
     int count = 0;
     List<string> records = new List<string>();
+    List<EquipData> items = new List<EquipData>();
 
     foreach (KeyValuePair<string, List<EquipData>> p in multis) {
       string multi = p.Key;
@@ -190,6 +191,7 @@ public class SlottableAnatomy : MonoBehaviour {
         if (eq.key == equip_id) {
           count++;
           records.Add(multi);
+          items.Add(eq);
         }
       }
 
@@ -207,7 +209,7 @@ public class SlottableAnatomy : MonoBehaviour {
       }
     }
 
-    return has_enough;
+    return items;
   }
 
   void remove_one_from_multi(string equip_id, string implement) {
@@ -227,8 +229,9 @@ public class SlottableAnatomy : MonoBehaviour {
     }
   }
 
-  public bool check_has_equipment_with_attributes(string attb) {
+  public EquipData check_has_equipment_with_attributes(string attb) {
     bool is_true = false;
+
     foreach (EquipData eq in anatomy.Values) {
       if (eq == null) continue;
       switch (attb) {
@@ -259,17 +262,19 @@ public class SlottableAnatomy : MonoBehaviour {
         default: throw new System.ArgumentException("Unknown equipment attribute " + attb);
       }
 
-      if (is_true) return true;
+      if (is_true) {
+        return eq;
+      }
     }
 
-    return false;
+    return null;
   }
 
   public bool check_has_equipment_with_attributes(List<string> attributes) {
     bool is_true = false;
 
     foreach (string attb in attributes) {
-      is_true |= check_has_equipment_with_attributes(attb);
+      is_true |= (check_has_equipment_with_attributes(attb) != null);
     }
 
     return is_true;

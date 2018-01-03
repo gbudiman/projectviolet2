@@ -19,16 +19,16 @@ tower_leather	Shield	Tower	Leatherhide	2	arm	durability: 100, block_rate: 50
 tower_plated	Shield	Tower	Plated	10	arm	durability: 2000, block_rate: 10
 quiver_slingback	Accessories	Slingback	Slingback Quiver	1	slingback	arrow_capacity: 25
 belt_generic	Accessories	Belt	Belt Generic	1	belt	belt_capacity: 2
-sword_short	Weapon	Shortsword	Shortsword	10	arm	armor_pierce: 10, range: 1, is_sharp: true, is_sword: true, is_throwable: true, is_melee: true
-sword_generic	Weapon	Sword	Sword	20	arm	armor_pierce: 10, range: 1, is_sharp: true, is_sword: true, is_throwable: true, is_melee: true
-sword_great	Weapon	Greatsword	Greatsword	50	arm	armor_pierce: 10, range: 1, is_sharp: true, is_sword: true, is_oversize: true, is_throwable: true, is_melee: true
-bow_short	Weapon	Shortbow	Shortbow	1	arm_dual	range: 3, draw_weight: 30, is_ranged: true, is_bow: true
-bow_long	Weapon	Longbow	Longbow	2	arm_dual	armor_bypass: 10, range: 5, draw_weight: 50, is_ranged: true, is_bow: true
-crossbow	Weapon	Crossbow	Crossbow	1	arm	range: 7, is_ranged: true, is_crossbow: true
+sword_short	Weapon	Shortsword	Shortsword	10	arm	armor_pierce: 10, range: 1, is_sharp: true, is_sword: true, is_throwable: true, is_melee: true, base_damage: 50
+sword_generic	Weapon	Sword	Sword	20	arm	armor_pierce: 10, range: 1, is_sharp: true, is_sword: true, is_throwable: true, is_melee: true, base_damage: 100
+sword_great	Weapon	Greatsword	Greatsword	50	arm	armor_pierce: 10, range: 1, is_sharp: true, is_sword: true, is_oversize: true, is_throwable: true, is_melee: true, base_damage: 250
+bow_short	Weapon	Shortbow	Shortbow	1	arm_dual	range: 3, draw_weight: 30, is_ranged: true, is_bow: true, base_damage: 50
+bow_long	Weapon	Longbow	Longbow	2	arm_dual	armor_bypass: 10, range: 5, draw_weight: 50, is_ranged: true, is_bow: true, base_damage: 100
+crossbow	Weapon	Crossbow	Crossbow	1	arm	range: 7, is_ranged: true, is_crossbow: true, base_damage: 50
 mounted_crossbow	Weapon	Mounted Crossbow	Mounted Crossbow	1	gauntlet	range: 5, is_ranged: true, is_bow: true, is_mounted: true
 mounted_pistol	Weapon	Mounted Pistol	Mounted Pistol	5	gauntlet	range: 7, is_ranged: true, is_gunpowder: true, is_mounted: true
-arrow_iron	Ammunition	Arrow	Iron Arrow	0.1	quiver	armor_pierce: 5, is_sharp: true
-arrow_steel	Ammunition	Arrow	Steel Arrow	0.1	quiver	armor_pierce: 10, is_sharp: true
+arrow_iron	Ammunition	Arrow	Iron Arrow	0.1	quiver	armor_pierce: 5, is_sharp: true, base_damage: 100
+arrow_steel	Ammunition	Arrow	Steel Arrow	0.1	quiver	armor_pierce: 10, is_sharp: true, base_damage: 250
 bullet_pistol	Ammunition	Bullet	Pistol Bullet	0.1	belt_toolkit	armor_pierce: 10, is_baggable: true
 bullet_rifle	Ammunition	Bullet	Rifle Bullet	0.1	belt_toolkit	armor_pierce: 25, is_baggable: true
 bullet_handcannon	Ammunition	Bullet	Handcannon Bullet	0.1	belt_toolkit	armor_pierce: 25, armor_bypass: 10, is_baggable: true

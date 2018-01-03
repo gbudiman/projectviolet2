@@ -47,19 +47,23 @@ public class ActionController : MonoBehaviour {
   Dictionary<string, bool> recalculate_actions() {
     Dictionary<string, bool> valid_actions = new Dictionary<string, bool>(actions);
 
-    if (!actor.check_has_equipment_with_attributes("is_melee")) {
+    if (actor.check_has_equipment_with_attributes("is_melee") == null) {
       valid_actions["attack_melee"] = false;
     }
 
-    if (!actor.check_has_equipment_with_attributes(new List<string>() { { "is_bow" }, { "is_crossbow" } })) {
+    //if (!actor.check_has_equipment_with_attributes(new List<string>() { { "is_bow" }, { "is_crossbow" } })) {
+    if (actor.check_has_equipment_with_attributes("is_bow") == null &&
+        actor.check_has_equipment_with_attributes("is_crossbow") == null) { 
       valid_actions["attack_bow"] = false;
     } 
 
-    if (!actor.check_has_equipment_with_attributes("is_gunpowder")) {
+    if (actor.check_has_equipment_with_attributes("is_gunpowder") == null) {
       valid_actions["attack_firearm"] = false;
     }
 
-    if (!actor.check_has_equipment_with_attributes(new List<string>() { { "is_throwable"}, { "is_dedicated_throwable"} })) {
+    //if (!actor.check_has_equipment_with_attributes(new List<string>() { { "is_throwable"}, { "is_dedicated_throwable"} })) {
+    if (actor.check_has_equipment_with_attributes("is_throwable") == null &&
+        actor.check_has_equipment_with_attributes("is_dedicated_throwable") == null) { 
       valid_actions["throw"] = false;
     }
 

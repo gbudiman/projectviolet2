@@ -16,6 +16,10 @@ public class EquipsLoader : MonoBehaviour {
 		
 	}
 
+  public Dictionary<string, EquipData> get_equips() {
+    return equips;
+  }
+
   Dictionary<string, EquipData> process(string raw) {
     string[] lines = raw.Split("\n"[0]);
     equips = new Dictionary<string, EquipData>();
@@ -69,6 +73,7 @@ public class EquipsLoader : MonoBehaviour {
 }
 
 public class EquipData {
+  public float base_damage = 0;
   public float armor_point = 0;
   public float durability = 0;
   public float block_chance = 0;
@@ -178,6 +183,7 @@ public class EquipData {
       case "range": range = (int)v; break;
       case "draw_weight": draw_weight = v; break;
       case "ammo_chamber": ammo_chamber = (int)v; break;
+      case "base_damage": base_damage = v; break;
       default: throw new System.ArgumentException("Unknown property " + p);
     }
   }

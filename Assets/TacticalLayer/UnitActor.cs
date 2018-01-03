@@ -17,6 +17,8 @@ public class UnitActor : MonoBehaviour {
   public ActorTechs actor_techs;
   public SlottableAnatomy anatomy;
   public ActionController action_controller;
+  public Stats stats;
+  public Interaction interaction;
 
 	// Use this for initialization
 	void Start () {
@@ -28,17 +30,26 @@ public class UnitActor : MonoBehaviour {
     initialize_tooltip_dictionary();
     initialize_confirmation_dictionary();
 
-    techs = GetComponent<TechsLoader>().get_techs();
-    equips = GetComponent<EquipsLoader>().equips;
-
     anatomy = GetComponent<SlottableAnatomy>();
     actor_techs = GetComponent<ActorTechs>();
     action_controller = GetComponent<ActionController>();
+    stats = GetComponent<Stats>();
+    interaction = GetComponent<Interaction>();
 
     anatomy.set_parent_actor(this);
     action_controller.set_parent_actor(this);
-    action_controller.set_tech_dict(techs);
+    stats.set_parent_actor(this);
+    interaction.set_parent_actor(this);
 	}
+
+  public void assign_tech_loader(Dictionary<string, SkillData> _techs) {
+    techs = _techs;
+    action_controller.set_tech_dict(techs);
+  }
+
+  public void assign_item_loader(Dictionary<string, EquipData> _equips) {
+    equips = _equips;
+  }
 	
 	// Update is called once per frame
 	void Update () {
@@ -49,6 +60,26 @@ public class UnitActor : MonoBehaviour {
     return action_controller.get_actions();
   }
 
+#region Stats
+  public void set_level(int x) {
+    stats.level = x;
+  }
+
+  public void stats_recompute_all() {
+    stats.recompute_all();
+  }
+
+  public void set_six_stats(int str, int vit, int agi, int dex, int _int, int fai) {
+    stats.strength = str;
+    stats.vitality = vit;
+    stats.agility = agi;
+    stats.dexterity = dex;
+    stats.intellect = _int;
+    stats.faith = fai;
+  }
+
+#endregion
+
 #region Techs
   void check_tech_or_raise_exception(string tech_id) {
     if (!techs.ContainsKey(tech_id)) throw new System.ArgumentException("Invalid Tech ID " + tech_id);
@@ -58,6 +89,8 @@ public class UnitActor : MonoBehaviour {
     check_tech_or_raise_exception(tech_id);
     return actor_techs.has_tech(tech_id);
   }
+
+
 
   public void confer_tech(string tech_id) {
     check_tech_or_raise_exception(tech_id);
@@ -75,7 +108,7 @@ public class UnitActor : MonoBehaviour {
     actor_techs.enable(tech_id, val);
   }
 
-  #endregion
+#endregion
 
 #region Equips
   void check_item_or_raise_exception(string item) {
@@ -86,20 +119,36 @@ public class UnitActor : MonoBehaviour {
     anatomy.equip(equips[s]);
   }
 
+  public void load_multis(string s, int amount = 1, bool mainside = true) {
+    anatomy.load_multis(equips[s], amount, mainside);
+  }
+
   public void swap_arm_equips() {
     anatomy.swap_arms();
   }
 
-  public bool check_has_equipment_with_attributes(string attb) {
+  public EquipData check_has_equipment_with_attributes(string attb) {
     return anatomy.check_has_equipment_with_attributes(attb);
   }
 
-  public bool check_has_equipment_with_attributes(List<string> attb) {
-    return anatomy.check_has_equipment_with_attributes(attb);
+  public List<EquipData> use_ammo(string item_id, int amount = 1) {
+    check_item_or_raise_exception(item_id);
+    List<EquipData> ammo = anatomy.take_from_multis(item_id, amount);
+
+    return ammo;
   }
 
+  //public EquipData check_has_equipment_with_attributes(List<string> attbs) {
+  //  return anatomy.check_has_equipment_with_attributes(attbs);
+  //}
+
+  #endregion
+
+  #region Interaction
+  public void deliver_to(UnitActor other, string action) {
+    interaction.deliver_to(other, action);
+  }
 #endregion
-
   void initialize_tooltip_dictionary() {
     //tooltip_dict = new Dictionary<Action, string>() {
     //  {Action.attack, "Select adjacent target to commence melee attack" }

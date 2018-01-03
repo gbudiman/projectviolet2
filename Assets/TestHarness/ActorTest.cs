@@ -3,17 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ActorTest : MonoBehaviour {
-  UnitActor actor;
   EquipsLoader equips_loader;
+  TechsLoader techs_loader;
   SlottableAnatomy anatomy;
 
   ActionComparator validator;
+
+  UnitActor actor_a;
+  UnitActor actor_b;
   int test_count = 0;
   int pass_count = 0;
 	// Use this for initialization
 	void Start () {
-    actor = GetComponent<UnitActor>();
     equips_loader = GetComponent<EquipsLoader>();
+    techs_loader = GetComponent<TechsLoader>();
+
+    actor_a = GameObject.Find("actor_a").GetComponent<UnitActor>();
+    actor_b = GameObject.Find("actor_b").GetComponent<UnitActor>();
+
+    actor_a.assign_item_loader(equips_loader.get_equips());
+    actor_a.assign_tech_loader(techs_loader.get_techs());
+    actor_b.assign_item_loader(equips_loader.get_equips());
+    actor_b.assign_tech_loader(techs_loader.get_techs());
+
     begin_test();
 	}
 	
@@ -26,20 +38,32 @@ public class ActorTest : MonoBehaviour {
 
   void begin_test() {
     validator = new ActionComparator();
-    actor.equip("bow_long");
-    actor.confer_tech("marksmanship_bow");
-    actor.confer_tech("marksmanship_double_tap");
+    actor_a.set_level(30);
+    actor_a.set_six_stats(1, 1, 10, 50, 1, 1);
+    actor_a.stats_recompute_all();
+    actor_a.equip("bow_long");
+    actor_a.equip("quiver_slingback");
+    actor_a.load_multis("arrow_iron", 5);
+
+    actor_a.confer_tech("marksmanship_bow");
+    actor_a.confer_tech("marksmanship_double_tap");
+
+    actor_b.set_level(1);
+    actor_b.stats_recompute_all();
+
     validator.add("marksmanship_double_tap");
     validator.enable("attack_melee", false);
     validator.enable("attack_firearm", false);
     validator.enable("throw", false);
+
+    actor_a.deliver_to(actor_b, "marksmanship_double_tap");
     test();
 
     end_test();
   }
 
   void test() {
-    if (validator.equals(actor.get_actions())) {
+    if (validator.equals(actor_a.get_actions())) {
       pass_count++;
     }
 

@@ -290,7 +290,9 @@
     <Compile Include="Assets\TacticalLayer\ActionUIController.cs" />
     <Compile Include="Assets\TacticalLayer\ActorActionController.cs" />
     <Compile Include="Assets\TacticalLayer\ActorTechs.cs" />
+    <Compile Include="Assets\TacticalLayer\Interaction.cs" />
     <Compile Include="Assets\TacticalLayer\SlottableAnatomy.cs" />
+    <Compile Include="Assets\TacticalLayer\Stats.cs" />
     <Compile Include="Assets\TacticalLayer\TacticalGameController.cs" />
     <Compile Include="Assets\TacticalLayer\TacticalMap.cs" />
     <Compile Include="Assets\TacticalLayer\UnitActor.cs" />
