@@ -68,8 +68,8 @@ public class Stats : MonoBehaviour {
   }
 
   public void recompute_all() {
-    compute(UnitStat.acc);
-    compute(UnitStat.dodge);
+    //compute(UnitStat.acc);
+    //compute(UnitStat.dodge);
     compute(UnitStat.patk);
     compute(UnitStat.ratk);
     compute(UnitStat.matk);
@@ -90,8 +90,6 @@ public class Stats : MonoBehaviour {
 
   void compute(UnitStat stat) {
     switch(stat) {
-      case UnitStat.dodge: break;
-      case UnitStat.acc: break;
       case UnitStat.patk: break;
       case UnitStat.ratk: break;
       case UnitStat.matk: break;

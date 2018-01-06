@@ -48,7 +48,8 @@ public class ActorTest : MonoBehaviour {
     actor_a.confer_tech("marksmanship_bow");
     actor_a.confer_tech("marksmanship_double_tap");
 
-    actor_b.set_level(1);
+    actor_b.set_level(99);
+    actor_b.stats.agility = 99;
     actor_b.stats_recompute_all();
 
     validator.add("marksmanship_double_tap");
