@@ -8,6 +8,8 @@ public class Interaction : MonoBehaviour {
   const float DEX_CB = 250;
   const float RANGE_MOD_CLOSE = 1.5f;
   const float RANGE_MOD_FAR = 2f;
+  const bool IS_MELEE = true;
+  const bool IS_RANGED = false;
 	// Use this for initialization
 	void Start () {
 		
@@ -30,7 +32,7 @@ public class Interaction : MonoBehaviour {
         if (eq != null) {
           List<EquipData> ammo = actor.use_ammo("arrow_iron");
           if (ammo.Count >= 1) {
-            if (is_strictly_hit(other, false, get_delta_range(eq, other))) {
+            if (is_strictly_hit(other, IS_RANGED, get_delta_range(eq, other))) {
               float damage = eq.base_damage + ammo[0].base_damage;
 
               if (actor.has_tech("marksmanship_bow")) {
@@ -65,32 +67,48 @@ public class Interaction : MonoBehaviour {
   }
 
   HitMissInfo get_hit_miss_info(UnitActor other, bool is_melee = true, float range = 0) {
+    
     Stats actor_stats = actor.stats;
     Stats other_stats = other.stats;
     float attacker_accuracy = actor_stats.dexterity + actor_stats.dexterity_plus + actor_stats.level;
     float other_dodge = other_stats.agility + other_stats.agility_plus + other_stats.level;
+    float copy_of_attacker_accuracy = attacker_accuracy;
+    
+
+    RangePenaltyInfo range_penalty_info = new RangePenaltyInfo(attacker_accuracy);
 
     if (!is_melee) {
-      attacker_accuracy = accuracy_range_modifier(attacker_accuracy, range);
+      range_penalty_info = accuracy_range_modifier(attacker_accuracy, range);
+      attacker_accuracy = range_penalty_info.accuracy; //accuracy_range_modifier(attacker_accuracy, range);
+      
     }
 
     HitMissInfo roll = roll_hit_dice(attacker_accuracy, other_dodge);
+    roll.attacker_accuracy = copy_of_attacker_accuracy;
+    roll.other_dodge = other_dodge;
+    roll.range_penalty_info = range_penalty_info;
+
+    Debug.Log("Accuracy = " + roll.attacker_accuracy + " | Dodge = " + roll.other_dodge);
+    Debug.Log("Range Bonus: " + (-roll.range_penalty_info.penalty * 100) + "%");
     Debug.Log("Hit Chance: " + roll.reported_hit_chance * 100 + "%");
     return roll;
   }
 
-  float accuracy_range_modifier(float accuracy, float range) {
+  RangePenaltyInfo accuracy_range_modifier(float accuracy, float range) {
     if (range > 0) {
       // penalize because too far
-      return accuracy + Mathf.Pow(range, RANGE_MOD_FAR);
+      //return accuracy + Mathf.Pow(range, RANGE_MOD_FAR);
+      float penalty = Mathf.Pow(range, RANGE_MOD_FAR) / 100;
+      return new RangePenaltyInfo(accuracy - accuracy * penalty, penalty);
+    } else {
+      float penalty = Mathf.Pow(Mathf.Abs(range), RANGE_MOD_CLOSE) / 100;
+      return new RangePenaltyInfo(accuracy + accuracy * penalty, -penalty);
     }
-
-    return accuracy + Mathf.Pow(Mathf.Abs(range), RANGE_MOD_CLOSE);
   }
 
   HitMissInfo roll_hit_dice(float accuracy, float dodge) {
     float rand = Random.value;
-    float hit_threshold = accuracy / dodge;
+    float hit_threshold = Mathf.Clamp(accuracy / dodge, 0, 999);
 
     if (hit_threshold > rand) {
       // strike lands on target;
@@ -107,11 +125,29 @@ public class Interaction : MonoBehaviour {
   }
 }
 
+public class RangePenaltyInfo {
+  public float accuracy;
+  public float penalty;
+
+  public RangePenaltyInfo(float _a) {
+    accuracy = _a;
+    penalty = 0;
+  }
+
+  public RangePenaltyInfo(float _a, float _p) {
+    accuracy = _a;
+    penalty = _p;
+  }
+}
+
 public class HitMissInfo {
   public bool is_hit;
   float raw_hit_chance;
   public float reported_hit_chance;
   public float damage_factor;
+  public float attacker_accuracy;
+  public float other_dodge;
+  public RangePenaltyInfo range_penalty_info;
 
   public HitMissInfo(bool _is_hit, float hit_chance, float _factor) {
     is_hit = _is_hit;
